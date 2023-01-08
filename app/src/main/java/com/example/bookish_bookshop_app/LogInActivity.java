@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private EditText txtCorreo;
+    private EditText txtUsername;
     private EditText txtPassword;
 
     public User[] users =
@@ -35,7 +36,7 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        txtCorreo =(EditText) findViewById(R.id.txt_Correo);
+        txtUsername =(EditText) findViewById(R.id.txt_Username);
         txtPassword = (EditText) findViewById(R.id.txt_Password);
         Button btnLogin = (Button) findViewById(R.id.btn_LogIn);
 
@@ -47,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
 
                 for (User user : users) {
                     System.out.println("users.length = " + users.length + "\n Nombre: " + user.nombre + "\n Contraseña: " + user.contrasenia);
-                    if ((txtCorreo.getText().toString().equals(user.nombre)) && (txtPassword.getText().toString().equals(user.contrasenia))) {
+                    if ((txtUsername.getText().toString().equals(user.nombre)) && (txtPassword.getText().toString().equals(user.contrasenia))) {
                         createNewPopUp ();
                         bandera = true;
                         break; // para que salga cuando ya encuentre la respuesta
@@ -78,6 +79,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // define what it does to save
+                savePreferences();
 
                 // calls main activity
                 callActivity(view);
@@ -96,8 +98,21 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void callActivity(View view) {
-        Intent call_mostrar = new Intent(view.getContext(), MainActivity.class);
-        startActivity(call_mostrar);
+        Intent call_activity = new Intent(view.getContext(), MainActivity.class);
+        startActivity(call_activity);
     }
+
+    private void savePreferences() {
+        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
+        String username_pref = txtUsername.getText().toString();
+        String password_pref = txtPassword.getText().toString();
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("user", username_pref);
+        editor.putString("clave", password_pref);
+
+        editor.commit();
+
+    };
 
 }
