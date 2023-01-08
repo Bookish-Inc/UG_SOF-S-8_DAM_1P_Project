@@ -5,6 +5,7 @@ import static android.app.PendingIntent.getActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,11 +16,14 @@ import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private EditText txtUsername;
-    private EditText txtPassword;
+    /**
+     * Variables
+     */
 
-    public User[] users =
-            {
+    public EditText txtUsername;
+    public EditText txtPassword;
+
+    private User[] users = {
                     new User("Helen", "1234"),
                     new User("Nefi", "1234"),
                     new User("Renan", "1234"),
@@ -39,34 +43,44 @@ public class LogInActivity extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txt_Password);
         Button btnLogin = (Button) findViewById(R.id.btn_LogIn);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean flag = false;
+        if (loadPreferences()) {
+            /**
+             * If SharedPreference exist, calls activity
+             */
+            callActivity();
+        } else {
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    boolean flag = false;
+                    String username = txtUsername.getText().toString();
+                    String password = txtPassword.getText().toString();
 
-                for (User user : users) {
-                    System.out.println("users.length = " + users.length + "\n Nombre: " + user.nombre + "\n Contraseña: " + user.contrasenia);
-                    if ((txtUsername.getText().toString().equals(user.nombre)) && (txtPassword.getText().toString().equals(user.contrasenia))) {
-                        createNewPopUp ();
-                        flag = true;
-                        break; // para que salga cuando ya encuentre la respuesta
+                    for (User user : users) {
+                        if (username.equals(user.nombre) && password.equals(user.contrasenia)) {
+                            createNewPopUp();
+                            flag = true;
+                            break; // para que salga cuando ya encuentre la respuesta
+                        }
+                    }
+
+                    if (!flag) {
+                        toastMessage("Datos Incorrectos");
                     }
                 }
-
-                if (!flag) {
-                    toastMessage("Datos Incorrectos");
-                }
-            }
-        });
-
+            });
+        }
     }
 
-    private void toastMessage(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
+    /**
+     * Methods--------------------------------------------------------------------------------------
+     */
 
     // https://www.youtube.com/watch?v=4GYKOzgQDWI
     public void createNewPopUp () {
+        /**
+         * Creates/calls activity as a pop up window
+         */
         dialogBuilder = new AlertDialog.Builder(this);
         final View popupView = getLayoutInflater().inflate(R.layout.activity_pop_up, null);
 
@@ -82,7 +96,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // define what it does to save
                 savePreferences();
-                callActivity(view);
+                callActivity();
                 toastMessage("Pereferncias guardadas");
             }
         });
@@ -91,16 +105,23 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // define what it does to cancel
-                callActivity(view);
+                callActivity();
                 toastMessage("Preferencias NO guardadas");
             }
         });
 
     }
 
-    private void callActivity(View view) {
-        Intent call_activity = new Intent(view.getContext(), MainActivity.class);
-        startActivity(call_activity);
+    private void toastMessage(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void callActivity() {
+        /**
+         * Only calls MainActivity
+         */
+        startActivity(new Intent(LogInActivity.this,MainActivity.class));
+        finish();
     }
 
     private void savePreferences() {
@@ -109,10 +130,28 @@ public class LogInActivity extends AppCompatActivity {
         String password_pref = txtPassword.getText().toString();
 
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("user", username_pref);
-        editor.putString("clave", password_pref);
+        editor.putString("username", username_pref);
+        editor.putString("password", password_pref);
 
         editor.commit();
+    };
+
+    private boolean loadPreferences() {
+        /**
+         * true: SharedPreferences do exist
+         * false: SharedPreferences doesn't exist
+         */
+        boolean flag = false;
+
+        SharedPreferences preferences = getSharedPreferences("credentials", Context.MODE_PRIVATE);
+        String username_temp = preferences.getString("username", "");
+        String password_temp = preferences.getString("password", "");
+
+        if (username_temp != "" && password_temp !="") {
+            flag = true;
+        }
+
+        return flag;
     };
 
 }
