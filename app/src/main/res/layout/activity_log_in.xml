@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/degradado"
-    tools:context=".LogIn" >
+    tools:context=".LogInActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
