@@ -8,12 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="color_primary">#4862AF</color>
-    <color name="color_primary_dark">#00574B</color>
-    <color name="color_accent">#D81B60</color>
-    <color name="color_indigo">#8494C2</color>
-    <color name="color_aqua_light">#82E1E3</color>
-    <color name="color_gray">#8A8585</color>
+    <color name="colorPrimary">#4862AF</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorIndigo">#8494C2</color>
+    <color name="colorAquaClarito">#82E1E3</color>
+    <color name="colorGris">#8A8585</color>
+    <color name="colorBlanco">#FFFFFF</color>
 </resources>
 
 
