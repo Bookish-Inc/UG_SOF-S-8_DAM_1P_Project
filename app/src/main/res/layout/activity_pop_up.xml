@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
     android:layout_height="475dp"
@@ -8,32 +9,51 @@
     android:orientation="vertical"
     android:padding="5dp">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="294dp"
-        android:layout_height="51dp"
-        android:fontFamily="@font/fredoka_one"
-        android:text="¿Desea mantener la sesión activa?"
-        android:textAlignment="center"
-        android:textColor="@color/colorBlanco"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="168dp" />
+    <LinearLayout
+        android:layout_width="334dp"
+        android:layout_height="465dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="5dp">
 
-    <Button
-        android:id="@+id/btn_Yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sí"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="315dp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="294dp"
+            android:layout_height="51dp"
+            android:fontFamily="@font/fredoka_one"
+            android:text="¿Desea mantener la sesión activa?"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlanco"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btn_No"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No"
-        tools:layout_editor_absoluteX="201dp"
-        tools:layout_editor_absoluteY="329dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_No"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/borde_redondof"
+                android:text="No"
+                app:backgroundTint="@color/colorPrimary" />
+
+            <Button
+                android:id="@+id/btn_Yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/borde_redondof"
+                android:text="Sí"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorPrimary" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
