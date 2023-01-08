@@ -30,7 +30,6 @@ public class LogInActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private Button btnPopup_yes, btnPopup_no;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,24 +42,27 @@ public class LogInActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean bandera = false;
-               //Intent call_principal = new Intent(view.getContext(), Registro.class);
+                boolean flag = false;
 
                 for (User user : users) {
                     System.out.println("users.length = " + users.length + "\n Nombre: " + user.nombre + "\n Contraseña: " + user.contrasenia);
                     if ((txtUsername.getText().toString().equals(user.nombre)) && (txtPassword.getText().toString().equals(user.contrasenia))) {
                         createNewPopUp ();
-                        bandera = true;
+                        flag = true;
                         break; // para que salga cuando ya encuentre la respuesta
                     }
                 }
 
-                if (!bandera) {
-                    Toast.makeText(getApplicationContext(), "Datos incorrectos", Toast.LENGTH_SHORT).show();
+                if (!flag) {
+                    toastMessage("Datos Incorrectos");
                 }
             }
         });
 
+    }
+
+    private void toastMessage(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     // https://www.youtube.com/watch?v=4GYKOzgQDWI
@@ -80,10 +82,8 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // define what it does to save
                 savePreferences();
-
-                // calls main activity
                 callActivity(view);
-
+                toastMessage("Pereferncias guardadas");
             }
         });
 
@@ -92,6 +92,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // define what it does to cancel
                 callActivity(view);
+                toastMessage("Preferencias NO guardadas");
             }
         });
 
@@ -112,7 +113,6 @@ public class LogInActivity extends AppCompatActivity {
         editor.putString("clave", password_pref);
 
         editor.commit();
-
     };
 
 }
