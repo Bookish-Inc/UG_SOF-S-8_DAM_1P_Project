@@ -79,7 +79,7 @@ public class LogInActivity extends AppCompatActivity {
     // https://www.youtube.com/watch?v=4GYKOzgQDWI
     public void createNewPopUp () {
         /**
-         * Creates/calls activity as a pop up window
+         * Creates/calls activity as a pop up windowa
          */
         dialogBuilder = new AlertDialog.Builder(this);
         final View popupView = getLayoutInflater().inflate(R.layout.activity_pop_up, null);
