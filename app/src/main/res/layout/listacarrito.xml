@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="157dp"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+
+            <ImageView
+                android:id="@+id/imagenLbro"
+                android:layout_width="243dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/book_alma" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:id="@+id/tituloItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:fontFamily="@font/fresca"
+                    android:text="Producto"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/precioItem"
+                        android:layout_width="190dp"
+                        android:layout_height="35dp"
+                        android:fontFamily="@font/fredoka_one"
+                        android:text="$50.00" />
+
+                    <TextView
+                        android:id="@+id/identeificadorItem"
+                        android:layout_width="16dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:text="#00000"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/sumaCantidad"
+                        android:layout_width="144dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/boton_agregar" />
+
+                    <TextView
+                        android:id="@+id/cantidadItem"
+                        android:layout_width="113dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/fresca"
+                        android:paddingTop="10dp"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:id="@+id/restaCantidad"
+                        android:layout_width="154dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        app:srcCompat="@drawable/menos" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imagenBorrar"
+                android:layout_width="204dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="9dp"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/borrar" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
