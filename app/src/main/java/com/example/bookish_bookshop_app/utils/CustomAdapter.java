@@ -16,7 +16,10 @@ import com.example.bookish_bookshop_app.Cart.ListenerCart;
 import com.example.bookish_bookshop_app.R;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
@@ -116,6 +119,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             }
             Cart cart = carts.get(iden);
             if (cart != null) {
+                System.out.println("Obtiene id: " + cart.getId());
                 switch (view.getId()) {
                     case R.id.sumaCantidad: {
                         listenerCart.onClickAddAmount(cart, this);
@@ -127,6 +131,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     }
                     case R.id.imagenBorrar: {
                         listenerCart.onClickRemoveItem(cart, this);
+                        carts.remove(iden);
+                        notifyItemRemoved(getAdapterPosition());
                     }
                 }
             }
@@ -149,12 +155,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        Cart cart = carts.get(position + 1);
+        Cart cart = new ArrayList<>(carts.values()).get(position);
         if (cart != null) {
             viewHolder.getTitulo().setText(cart.getTitulo());
             viewHolder.getCantidad().setText(Integer.toString(cart.getCount()));
             viewHolder.getImagen().setImageBitmap(cart.getImagen());
-            viewHolder.getPrecio().setText(Double.toString(cart.getPrice()));
+            viewHolder.getPrecio().setText("$" + Double.toString(cart.getPrice() * cart.getCount()));
             viewHolder.getIdentificador().setText("#" + Integer.toString(cart.getId()));
         }
     }

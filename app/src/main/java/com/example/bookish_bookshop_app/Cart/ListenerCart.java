@@ -20,6 +20,8 @@ public class ListenerCart implements CustomAdapter.onClickItem {
         if (cart.getCount() >= 1) {
             cart.incrementAmount();
             view.getCantidad().setText(Integer.toString(cart.getCount()));
+            cartDataBase.updateAmount(cart);
+            view.getPrecio().setText("$" + cart.getPrice() * cart.getCount());
         }
     }
 
@@ -29,16 +31,20 @@ public class ListenerCart implements CustomAdapter.onClickItem {
         if (cart.getCount() > 1) {
             cart.decrementAmount();
             view.getCantidad().setText(Integer.toString(cart.getCount()));
+            cartDataBase.updateAmount(cart);
+            view.getPrecio().setText("$" + cart.getPrice() * cart.getCount());
         }
     }
 
     @Override
     public void onClickRemoveItem(Cart cart, CustomAdapter.ViewHolder view) {
-
+        cartDataBase.removeCart(cart);
     }
 
     @Override
     public void onClickPurchase(Cart cart, CustomAdapter.ViewHolder view) {
 
     }
+
+
 }

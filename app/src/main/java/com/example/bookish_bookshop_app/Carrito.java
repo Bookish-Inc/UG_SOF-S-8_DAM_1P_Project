@@ -31,6 +31,14 @@ public class Carrito extends AppCompatActivity {
         database = new MyOpenHelper(this, 1);
         cartDataBase = new CartDataBase(this, database);
         carts = cartDataBase.getCarts();
+        System.out.println("Size: " + carts.size() + "->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        if (carts.size() == 0) {
+            cartDataBase.insertCart(4);
+            cartDataBase.insertCart(5);
+            cartDataBase.insertCart(6);
+            cartDataBase.insertCart(7);
+            cartDataBase.insertCart(8);
+        }
         customAdapter = new CustomAdapter(carts, this, new ListenerCart(cartDataBase));
         recyclerView.setAdapter(customAdapter);
     }
