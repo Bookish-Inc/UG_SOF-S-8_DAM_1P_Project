@@ -94,6 +94,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/borde_redondof"
             android:fontFamily="@font/fredoka_one"
+            android:onClick="onBtnIniciarSesion"
             android:text="Iniciar Sesion"
             android:textSize="20sp"
             app:backgroundTint="@color/colorIndigo" />

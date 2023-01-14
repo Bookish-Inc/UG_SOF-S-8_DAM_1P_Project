@@ -43,10 +43,8 @@ public class LogInActivity extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txt_Password);
         Button btnLogin = (Button) findViewById(R.id.btn_LogIn);
 
-        if (loadPreferences()) {
-            /**
-             * If SharedPreference exist, calls activity
-             */
+        /*if (loadPreferences()) {
+
             callActivity();
         } else {
             btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +67,12 @@ public class LogInActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
+        }*/
+    }
+
+    public void onBtnIniciarSesion(View v) {
+        Intent call_home = new Intent(v.getContext(), HomeActivity.class);
+        startActivity(call_home);
     }
 
     /**
