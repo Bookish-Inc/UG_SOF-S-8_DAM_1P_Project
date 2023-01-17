@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.bookish_bookshop_app.utils.MyOpenHelper;
+import com.example.bookish_bookshop_app.utils.Tablas;
 
 public class DbSugerencias extends MyOpenHelper{
     Context context;
@@ -32,7 +33,8 @@ public class DbSugerencias extends MyOpenHelper{
             values.put("apellidoAutor", apellidoAutor);
             values.put("comentarios", comentarios);
 
-            id = db.insert("sugerencia", null, values);
+            id = db.insert(Tablas.Sugerencia, null, values);
+
         }catch ( Exception ex){
             ex.toString();
         }
