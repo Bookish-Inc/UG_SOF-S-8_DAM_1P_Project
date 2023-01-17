@@ -69,7 +69,6 @@ public class DetailActivity extends AppCompatActivity {
                     "WHERE libro_id = " + id, null);
             if (c != null && c.moveToNext()) {
                 checkBox.setChecked(true);
-                Toast.makeText(getApplicationContext(), "Cambia estado", Toast.LENGTH_SHORT).show();
             }
         }
     }

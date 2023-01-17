@@ -34,7 +34,7 @@ public class Favoritos extends AppCompatActivity {
                     "INNER JOIN libro l ON ul.libro_id = l._id " +
                     "WHERE usuario_id = "+1, null);
             int i = 0;
-            if (c != null) {
+            if (c != null && c.moveToNext()) {
                 c.moveToFirst();
                 do {
                     i++;
@@ -64,6 +64,9 @@ public class Favoritos extends AppCompatActivity {
                         LayoutEstante1.addView(ly, lp);
                     }
                 } while (c.moveToNext());
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "No tienes favoritos", Toast.LENGTH_SHORT).show();
             }
         }
     }
