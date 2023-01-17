@@ -89,6 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
+                        android:onClick="onBtnFav"
                         app:srcCompat="@drawable/book_fantasma" />
 
                     <ImageView

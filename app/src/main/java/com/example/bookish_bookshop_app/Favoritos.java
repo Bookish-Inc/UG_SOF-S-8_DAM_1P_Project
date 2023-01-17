@@ -7,30 +7,33 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bookish_bookshop_app.utils.Imagen;
 
-public class SeccionCategoria extends AppCompatActivity {
+public class Favoritos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seccion_categoria);
+        setContentView(R.layout.activity_favoritos);
         LinearLayout LayoutEstante1 = (LinearLayout) findViewById(R.id.LinearLayout1);
-
-        Bundle bundle = getIntent().getExtras();
-        int id = bundle.getInt("id");
-        int i = 0;
+        LinearLayout LayoutEstante2 = (LinearLayout) findViewById(R.id.LinearLayout2);
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(this);
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        HayFavoritos(db, LayoutEstante1, LayoutEstante2);
+    }
+
+    public void HayFavoritos(SQLiteDatabase db, LinearLayout LayoutEstante1, LinearLayout LayoutEstante2){
         if (db != null) {
-            Cursor c = db.rawQuery("SELECT l.imagen, l._id FROM libro l INNER JOIN categoria_libro cl ON l._id = cl.libro_id WHERE cl.categoria_id =" + id, null);
+            Cursor c = db.rawQuery("SELECT l._id, l.imagen FROM usuario_libro ul " +
+                    "INNER JOIN libro l ON ul.libro_id = l._id " +
+                    "WHERE usuario_id = "+1, null);
+            int i = 0;
             if (c != null) {
                 c.moveToFirst();
                 do {
@@ -55,15 +58,14 @@ public class SeccionCategoria extends AppCompatActivity {
                         }
                     });
                     ly.addView(img, 250, 360);
-                    LayoutEstante1.addView(ly, lp);
+                    if(i > 3){
+                        LayoutEstante2.addView(ly, lp);
+                    }else{
+                        LayoutEstante1.addView(ly, lp);
+                    }
                 } while (c.moveToNext());
             }
         }
-    }
-
-    public void onBtnRegresar(View v) {
-        Intent call_home = new Intent(v.getContext(), HomeActivity.class);
-        startActivity(call_home);
     }
 
     public void onBtnDetalle(View v, int id) {

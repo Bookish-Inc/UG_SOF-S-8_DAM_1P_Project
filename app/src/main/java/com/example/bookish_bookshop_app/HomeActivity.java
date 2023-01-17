@@ -96,7 +96,10 @@ public class HomeActivity extends AppCompatActivity {
             db.close();
         }
     }
-
+    public void onBtnFav(View v) {
+        Intent call_detail = new Intent(v.getContext(), Favoritos.class);
+        startActivity(call_detail);
+    }
     public void onBtnLibro(View v) {
         Intent call_detail = new Intent(v.getContext(), DetailActivity.class);
         startActivity(call_detail);

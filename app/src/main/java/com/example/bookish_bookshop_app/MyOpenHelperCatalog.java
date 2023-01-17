@@ -36,6 +36,11 @@ public class MyOpenHelperCatalog extends SQLiteOpenHelper {
             "categoria_id INTEGER, " +
             "libro_id INTEGER" +
             ")";
+    private static final String TABLE_USUARIO_FAVORITOS = "CREATE TABLE IF NOT EXISTS usuario_libro(" +
+            "_id INTEGER PRIMARY KEY, " +
+            "usuario_id INTEGER, " +
+            "libro_id INTEGER" +
+            ")";
     String sql_categoria_libro =
             "INSERT OR IGNORE INTO categoria_libro (_id, categoria_id, libro_id) VALUES (1,4,1),(2,3,2),(3,1,3),(4,4,4),(5,6,4),(6,5,5),(7,2,6)";
     private static final String DB_NAME = "NetCore.sqlite";
@@ -50,6 +55,7 @@ public class MyOpenHelperCatalog extends SQLiteOpenHelper {
         db.execSQL(TABLE_LIBRO);
         db.execSQL(TABLE_CATEGORIA);
         db.execSQL(TABLE_CATEGORIA_LIBRO);
+        db.execSQL(TABLE_USUARIO_FAVORITOS);
         db.execSQL(sql_categoria_libro);
     }
 
