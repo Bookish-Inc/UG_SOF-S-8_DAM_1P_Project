@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
@@ -18,21 +19,61 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:gravity="right"
                 android:orientation="horizontal"
-                android:paddingRight="20dp">
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
-                <CheckBox
-                    android:id="@+id/checkBox"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@android:drawable/btn_star" />
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp">
+
+                    <Button
+                        android:id="@+id/btn_menu"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="start"
+                        android:background="@drawable/boton_redondo_menu"
+                        android:insetLeft="2dp"
+                        android:onClick="onBtnRegresar"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/colorPrimary"
+                        app:icon="@android:drawable/ic_menu_revert"
+                        app:iconPadding="10dp"
+                        app:iconTint="@color/white"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp">
+
+                    <CheckBox
+                        android:id="@+id/chb_favorito"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:button="@android:drawable/btn_star"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:gravity="right"
+                        android:onClick="OnCheckedStar"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -41,11 +82,18 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/img_portada"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/book_lider" />
+
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragmentContainerView3"
                     android:name="com.example.bookish_bookshop_app.BookCoverFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     tools:layout="@layout/fragment_book_cover" />
 
             </LinearLayout>
@@ -53,20 +101,151 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/borde_redondog"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:padding="5dp">
 
-                <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/fragmentContainerView4"
-                    android:name="com.example.bookish_bookshop_app.DescriptionBookFragment"
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:id="@+id/txt_sinopsis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:isScrollContainer="false"
+                        android:singleLine="false"
+                        android:text="TextView"
+                        android:textColor="#090808"
+                        tools:text="@string/libro" />
+                </ScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fragmentContainerView4"
+                        android:name="com.example.bookish_bookshop_app.DescriptionBookFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        tools:layout="@layout/fragment_description_book" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="122dp"
-                    android:layout_weight="1"
-                    tools:layout="@layout/fragment_description_book" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="20dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="160dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/boton_redondo_menu"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:id="@+id/txt_fechapubli"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:paddingRight="5dp"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="160dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/boton_redondo_menu"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:id="@+id/txt_autor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:paddingRight="5dp"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="160dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/boton_redondo_menu"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:id="@+id/txt_categoria"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:paddingRight="5dp"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="160dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/boton_redondo_menu"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:id="@+id/txt_precio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:paddingRight="5dp"
+                                android:text="TextView"
+                                android:textAlignment="viewStart"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -80,6 +259,7 @@
                     android:id="@+id/Btn_Agregar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="Agregar a carrito" />
             </LinearLayout>
 
