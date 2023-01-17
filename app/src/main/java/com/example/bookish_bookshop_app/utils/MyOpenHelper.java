@@ -10,7 +10,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
      */
     String CART = "create table Libro ( id INTEGER primary key autoincrement, titulo VARCHAR(255), autor VARCHAR(255), precio REAL, descripcion VARCHAR(255), categoria VARCHAR(255), imagen BLOB );";
     String LIBRO = "create table Cart (id INTEGER primary key autoincrement, id_libro INTEGER, cantidad INTEGER, foreign key (id_libro) references Libro);";
-    private final String[] table = new String[]{CART, LIBRO};
+    String SUGERENCIA = "CREATE TABLE sugerencia(" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "titulo TEXT, " + "edicion TEXT, " + "editorial TEXT, " + "cubierta TEXT, " + "fechaPublicacion TEXT, " + "nombreAutor TEXT, " + "apellidoAutor TEXT, " + "comentarios TEXT)";
+    private final String[] table = new String[]{CART, LIBRO, SUGERENCIA};
 
     /**
      * De aqui para abajo no tocar
@@ -21,6 +22,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public MyOpenHelper(Context context, int version) {
         super(context, "BookishDB", null, version);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
