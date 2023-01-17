@@ -10,7 +10,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
      */
     String CART = "create table Libro ( id INTEGER primary key autoincrement, titulo VARCHAR(255), autor VARCHAR(255), precio REAL, descripcion VARCHAR(255), categoria VARCHAR(255), imagen BLOB );";
     String LIBRO = "create table Cart (id INTEGER primary key autoincrement, id_libro INTEGER, cantidad INTEGER, foreign key (id_libro) references Libro);";
-    String SUGERENCIA = "CREATE TABLE sugerencia(" + "_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "titulo TEXT, " + "edicion TEXT, " + "editorial TEXT, " + "cubierta TEXT, " + "fechaPublicacion TEXT, " + "nombreAutor TEXT, " + "apellidoAutor TEXT, " + "comentarios TEXT)";
+    String SUGERENCIA = "CREATE TABLE Sugerencia (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR(255), edicion VARCHAR(255),editorial VARCHAR(255), cubierta VARCHAR(255), fechaPublicacion VARCHAR(255), nombreAutor VARCHAR(255), apellidoAutor VARCHAR(255), comentarios VARCHAR(255))";
     private final String[] table = new String[]{CART, LIBRO, SUGERENCIA};
 
     /**

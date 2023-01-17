@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.bookish_bookshop_app.R;
+import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
 import java.util.Calendar;
 
@@ -24,6 +25,8 @@ public class IngresarSugerencia extends AppCompatActivity {
     EditText txtTitulo, txtEdicion, txtEditorial, txtNombreAutor, txtApellido, dtpFechaPublicacion, txtComentarios;
     Button btn_Registrar, btn_Ver;
     Spinner spnrCubierta;
+    DbSugerencias dbSugerencias;
+    private MyOpenHelper database;
 
     private int nYearIni, nMonthIni, nDayIni, sYearIni, sMonthIni, sDayIni;
     static final int DATE_ID = 0;
@@ -33,6 +36,8 @@ public class IngresarSugerencia extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresar_sugerencia);
+        database = new MyOpenHelper(this, 1);
+        dbSugerencias = new DbSugerencias(this, database);
 
         sMonthIni = C.get(Calendar.MONTH);
         sDayIni = C.get(Calendar.DAY_OF_MONTH);
@@ -71,8 +76,8 @@ public class IngresarSugerencia extends AppCompatActivity {
         txtComentarios = findViewById(R.id.txt_Comentarios);
     }
 
-    private void Colocar_fecha(){
-        dtpFechaPublicacion.setText(nDayIni + "-" +(nMonthIni + 1) + "-" +  nYearIni + "");
+    private void Colocar_fecha() {
+        dtpFechaPublicacion.setText(nDayIni + "-" + (nMonthIni + 1) + "-" + nYearIni + "");
     }
 
     private DatePickerDialog.OnDateSetListener nDateSetListener =
@@ -86,28 +91,26 @@ public class IngresarSugerencia extends AppCompatActivity {
                 }
             };
 
-    protected Dialog onCreateDialog(int id){
-        switch (id){
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
             case DATE_ID:
                 return new DatePickerDialog(this, nDateSetListener, sYearIni, sMonthIni, sDayIni);
         }
         return null;
     }
 
-    public void onBtnRegistrar(View v){
-        DbSugerencias dbSugerencias = new DbSugerencias(IngresarSugerencia.this,1);
-        long id= dbSugerencias.insertarSugerencia(txtTitulo.getText().toString(),txtEdicion.getText().toString() ,txtEditorial.getText().toString(),
-                mSpinnerCubierta, dtpFechaPublicacion.getText().toString(), txtNombreAutor.getText().toString(),
-                txtApellido.getText().toString(),txtComentarios.getText().toString());
-        if (id>0){
+    public void onBtnRegistrar(View v) {
+        long id = dbSugerencias.insertarSugerencia(txtTitulo.getText().toString(), txtEdicion.getText().toString(), txtEditorial.getText().toString(), mSpinnerCubierta, dtpFechaPublicacion.getText().toString(), txtNombreAutor.getText().toString(),
+                txtApellido.getText().toString(), txtComentarios.getText().toString());
+        if (id > 0) {
             Toast.makeText(IngresarSugerencia.this, "Registro Guardado", Toast.LENGTH_LONG).show();
             limpiar();
-        }else{
+        } else {
             Toast.makeText(IngresarSugerencia.this, "Errore al guardar Registro", Toast.LENGTH_LONG).show();
         }
     }
 
-    private void limpiar (){
+    private void limpiar() {
         txtTitulo.setText("");
         txtEdicion.setText("");
         txtEditorial.setText("");
@@ -115,7 +118,6 @@ public class IngresarSugerencia extends AppCompatActivity {
         txtNombreAutor.setText("");
         txtApellido.setText("");
         txtComentarios.setText("");
-        spnrCubierta.setSelection(0);
     }
 
 
