@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
 public class Favoritos extends AppCompatActivity {

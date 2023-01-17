@@ -1,4 +1,4 @@
-package com.example.bookish_bookshop_app;
+package com.example.bookish_bookshop_app.Categorias;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import com.example.bookish_bookshop_app.DetailActivity;
+import com.example.bookish_bookshop_app.HomeActivity;
+import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
 public class SeccionCategoria extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.bookish_bookshop_app;
+package com.example.bookish_bookshop_app.Categorias;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.bookish_bookshop_app.R;
 
 /**
  * A simple {@link Fragment} subclass.

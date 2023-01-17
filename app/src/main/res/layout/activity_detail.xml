@@ -90,7 +90,7 @@
 
                 <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragmentContainerView3"
-                    android:name="com.example.bookish_bookshop_app.BookCoverFragment"
+                    android:name="com.example.bookish_bookshop_app.Categorias.BookCoverFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
@@ -135,7 +135,7 @@
 
                     <androidx.fragment.app.FragmentContainerView
                         android:id="@+id/fragmentContainerView4"
-                        android:name="com.example.bookish_bookshop_app.DescriptionBookFragment"
+                        android:name="com.example.bookish_bookshop_app.Categorias.DescriptionBookFragment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

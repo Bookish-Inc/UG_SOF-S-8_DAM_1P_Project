@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.bookish_bookshop_app.Sugerencia.User;
+
 public class LogInActivity extends AppCompatActivity {
 
     /**

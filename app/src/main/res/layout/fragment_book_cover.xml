@@ -5,7 +5,7 @@
     android:id="@+id/img_BookCover"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BookCoverFragment">
+    tools:context=".Categorias.BookCoverFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView

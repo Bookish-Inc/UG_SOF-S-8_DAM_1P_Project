@@ -1,4 +1,4 @@
-package com.example.bookish_bookshop_app;
+package com.example.bookish_bookshop_app.Sugerencia;
 
 import java.io.Serializable;
 

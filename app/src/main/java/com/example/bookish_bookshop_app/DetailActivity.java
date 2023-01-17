@@ -9,13 +9,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
+import com.example.bookish_bookshop_app.Categorias.SeccionCategoria;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
 public class DetailActivity extends AppCompatActivity {
