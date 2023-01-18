@@ -41,7 +41,6 @@ public class DetailsFragment extends Fragment {
     private String mParam2;
 
     public DetailsFragment(int idFinder) {
-        // Required empty public constructor
         this.idFinder = idFinder;
     }
 
@@ -71,13 +70,13 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        TextView TxtFechapubli = (TextView) view.findViewById(R.id.txt_fechapubli);
-        TextView TxtAutor = (TextView) view.findViewById(R.id.txt_autor);
-        TextView TxtPrecio = (TextView) view.findViewById(R.id.txt_precio);
-        TextView TxtSinopsis = (TextView) view.findViewById(R.id.txt_sinopsis);
-        ImageView ImgPortada = (ImageView) view.findViewById(R.id.img_portada);
-        TextView TxtCategoria = (TextView) view.findViewById(R.id.txt_categoria);
-        checkBox = (CheckBox) view.findViewById(R.id.chb_favorito);
+        TextView TxtFechapubli = view.findViewById(R.id.txt_fechapubli);
+        TextView TxtAutor = view.findViewById(R.id.txt_autor);
+        TextView TxtPrecio = view.findViewById(R.id.txt_precio);
+        TextView TxtSinopsis = view.findViewById(R.id.txt_sinopsis);
+        ImageView ImgPortada = view.findViewById(R.id.img_portada);
+        TextView TxtCategoria = view.findViewById(R.id.txt_categoria);
+        checkBox = view.findViewById(R.id.chb_favorito);
 
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(view.getContext());
         final SQLiteDatabase db = dbHelper.getWritableDatabase();

@@ -4,9 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="libro">El liderazgo es una vocación. Y el liderazgo con vocación de servicio –la idea de que dirigir una empresa con respeto, honradez, amor y espiritualidad potenciará las capacidades de los empleados- ayuda a responder a esa vocación. Al igual que obras innovadoras como La paradoja – Un relato sobre la verdadera esencia del liderazgo, este libro le ayudará a nutrir las necesidades y metas de aquellos que acuden a usted en busca de liderazgo. El resultado será una organización más productiva, exitosa y feliz y una vida más llena de sentido para usted y sus colaboradores. \n El auténtico liderazgo empieza en su interior con su propio compromiso para inspirar lo mejor en los demás. Pero una cosa es comprometerse y otra muy diferente cultivar las cualidades que harán que eso se haga realidad. Si es usted ejecutivo, dirigente o alguien que aspira a representar un papel de liderazgo, verá que la filosofía del liderazgo con vocación de servicio es un planteamiento valioso, refrescante y gratificador para liderar a los demás y para la vida de la empresa.</string>
     <string name="home">Home</string>
-    <string name="categoria">Categoria</string>
+    <string name="user">User</string>
     <string name="cart">Cart</string>
     <string name="suggest">Suggest</string>
+    <string name="favoritos">Favoritos</string>
 
     <string-array name="spinner_cubierta">
         <item>Pasta Dura</item>

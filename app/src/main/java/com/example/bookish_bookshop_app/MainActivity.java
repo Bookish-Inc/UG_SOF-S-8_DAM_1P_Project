@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.bookish_bookshop_app.Categorias.Home;
+import com.example.bookish_bookshop_app.Categorias.favoritosFragment;
 import com.example.bookish_bookshop_app.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new Home());
                     break;
                 }
-                case R.id.itemmenucategoria: {
+                case R.id.itemmenufav: {
+                    replaceFragment(new favoritosFragment());
                     break;
                 }
 

@@ -4,13 +4,16 @@
     <item android:title="@string/home"
         android:id="@+id/itemmenuhome"
         android:icon="@drawable/ic_baseline_home_24"/>
-    <item android:title="@string/categoria"
-        android:id="@+id/itemmenucategoria"
-        android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"/>
     <item android:title="@string/cart"
         android:id="@+id/itemmenucart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"/>
     <item android:title="@string/suggest"
         android:id="@+id/itemmenusuggest"
         android:icon="@drawable/ic_baseline_lightbulb_24"/>
+    <item android:title="@string/favoritos"
+        android:id="@+id/itemmenufav"
+        android:icon="@drawable/ic_baseline_favorite_24"/>
+    <item android:title="@string/user"
+        android:id="@+id/itemmenuuser"
+        android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"/>
 </menu>
