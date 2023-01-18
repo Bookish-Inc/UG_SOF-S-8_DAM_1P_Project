@@ -74,6 +74,7 @@
                         android:fontFamily="@font/fresca"
                         android:hint="El principito"
                         android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="22sp" />
@@ -93,12 +94,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:fontFamily="@font/fresca"
                         android:hint="Quinta"
                         android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
                         android:text=""
-                        android:fontFamily="@font/fresca"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/textViewed"
@@ -118,6 +120,7 @@
                         android:fontFamily="@font/fresca"
                         android:hint="Emecé"
                         android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="22sp" />
@@ -137,8 +140,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="41dp"
                         android:fontFamily="@font/fresca"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"/>
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/textview2"
@@ -154,13 +158,14 @@
                         android:id="@+id/dtp_FechaPublicaciion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
                         android:ems="10"
-                        android:inputType="date"
-                        android:fontFamily="@font/fresca"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"
                         android:focusable="false"
-                        android:clickable="true"/>
+                        android:fontFamily="@font/fresca"
+                        android:inputType="date"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
 
                     <TextView
@@ -178,12 +183,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:fontFamily="@font/fresca"
                         android:hint="Antoine "
                         android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
                         android:text=""
-                        android:fontFamily="@font/fresca"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/textView14"
@@ -200,12 +206,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:fontFamily="@font/fresca"
                         android:hint="De Saint-Exupéry"
                         android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
                         android:text=""
-                        android:fontFamily="@font/fresca"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
                     <TextView
                         android:id="@+id/textView13"
@@ -222,15 +229,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="88dp"
                         android:ems="10"
+                        android:fontFamily="@font/fresca"
                         android:inputType="text|textMultiLine"
                         android:lines="8"
                         android:maxLines="10"
                         android:minLines="6"
+                        android:paddingLeft="10dp"
                         android:scrollbars="vertical"
                         android:text=""
-                        android:fontFamily="@font/fresca"
-                        android:textSize="22sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="22sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -243,14 +251,19 @@
                             android:layout_width="182dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="20dp"
+                            android:background="@drawable/borde_redondof"
                             android:onClick="onBtnRegistrar"
-                            android:text="Registrar Sugerencia" />
+                            android:text="Registrar Sugerencia"
+                            app:backgroundTint="#89A3EF" />
 
                         <Button
                             android:id="@+id/btn_verSugerencias"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
+                            android:background="@drawable/borde_redondof"
+                            android:onClick="onBtnVerSugerencias"
                             android:text="Ver"
+                            app:backgroundTint="@color/colorIndigo"
                             app:icon="@android:drawable/ic_menu_view" />
 
                     </LinearLayout>

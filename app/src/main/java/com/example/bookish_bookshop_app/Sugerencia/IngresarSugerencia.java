@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.bookish_bookshop_app.R;
+import com.example.bookish_bookshop_app.VisualizarSugerencias;
 import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
 import java.util.Calendar;
@@ -108,6 +110,12 @@ public class IngresarSugerencia extends AppCompatActivity {
         } else {
             Toast.makeText(IngresarSugerencia.this, "Errore al guardar Registro", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void onBtnVerSugerencias(View v){
+        Toast.makeText(getApplicationContext(), "Consultando BD...", Toast.LENGTH_SHORT).show();
+        Intent call_consultar = new Intent(v.getContext(), VisualizarSugerencias.class);
+        startActivity(call_consultar);
     }
 
     private void limpiar() {
