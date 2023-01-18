@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/degradado"
-    tools:context=".LogInActivity" >
+    tools:context=".Module_1.Control_LogInActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,39 +16,41 @@
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="301dp"
-            android:layout_height="187dp"
+            android:id="@+id/LogIn_img_Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="165dp"
             app:srcCompat="@drawable/bookishb" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/LogIn_lbl_Logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/fredoka_one"
             android:text="Log In"
             android:textAlignment="center"
             android:textColor="#FAFAFA"
-            android:textSize="48sp" />
+            android:textSize="34sp" />
 
         <LinearLayout
             android:layout_width="342dp"
-            android:layout_height="195dp"
+            android:layout_height="266dp"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lbl_Username"
+                android:id="@+id/LogIn_lbl_Username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/fredoka_one"
                 android:text="Nombre de Usuario"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/txt_Username"
+                android:id="@+id/LogIn_txt_Username"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="5dp"
@@ -64,16 +66,18 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/lbl_Password"
+                android:id="@+id/LogIn_lbl_Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/fredoka_one"
                 android:text="Contraseña"
-                android:textColor="@color/colorBlanco" />
+                android:textColor="@color/colorBlanco"
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/txt_Password"
+                android:id="@+id/LogIn_txt_Password"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="5dp"
@@ -85,19 +89,45 @@
                 android:paddingLeft="15dp"
                 android:textSize="20dp" />
 
+            <CheckBox
+                android:id="@+id/LogIn_chk_Session"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:checked="true"
+                android:fontFamily="@font/fresca"
+                android:text="Mantener sesión iniciada"
+                android:textColor="@color/colorBlanco"
+                android:textSize="20sp"
+                app:buttonTint="@color/colorAquaClarito" />
+
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_LogIn"
+            android:id="@+id/LogIn_btn_LogIn"
             android:layout_width="333dp"
             android:layout_height="57dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/borde_redondof"
             android:fontFamily="@font/fredoka_one"
-            android:onClick="onBtnIniciarSesion"
+            android:onClick="onBtnLogIn"
             android:text="Iniciar Sesion"
             android:textSize="20sp"
             app:backgroundTint="@color/colorIndigo" />
+
+        <TextView
+            android:id="@+id/LogIn_lbl_SignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/fredoka_one"
+            android:gravity="center"
+            android:minHeight="48dp"
+            android:onClick="onLblSignUp"
+            android:text="Crear cuenta"
+            android:textAlignment="center"
+            android:textColor="@color/colorAquaClarito"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
