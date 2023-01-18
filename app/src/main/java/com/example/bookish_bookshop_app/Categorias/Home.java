@@ -13,15 +13,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.bookish_bookshop_app.DetailsFragment;
 import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
+import com.example.bookish_bookshop_app.utils.Tablas;
 
 
 public class Home extends Fragment {
@@ -53,18 +52,65 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        load();
+        loadCategoria();
+        loadLibros();
     }
 
-    private void load() {
+    private void loadLibros() {
+        LinearLayout layoutCategorias = view.findViewById(R.id.LayoutSugerencias);
+        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        layoutCategorias.removeAllViews();
+        if (db != null) {
+            Cursor c = db.rawQuery("SELECT _id, titulo, imagen FROM libro WHERE estado = 1", null);
+            if (c != null && c.moveToNext()) {
+                c.moveToFirst();
+                int i = 0;
+                do {
+                    @SuppressLint("Range") int id = c.getInt(0);
+                    @SuppressLint("Range") byte[] imagen = c.getBlob(2);
+                    @SuppressLint("Range") String nombre = c.getString(1);
+                    LinearLayout ly = new LinearLayout(view.getContext());
+                    ly.setOrientation(LinearLayout.VERTICAL);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 460);
+                    lp.setMargins(20, 20, 20, 20);
+                    ImageView img = new ImageView(getContext());
+                    TextView txt = new TextView(getContext());
+                    txt.setBackgroundColor(Color.parseColor("#20B2AA"));
+                    txt.setTextColor(Color.parseColor("white"));
+                    img.setId(i);
+                    //img.setLayoutParams(lp);
+                    Bitmap imgb = Imagen.deserializar(imagen);
+                    img.setImageBitmap(imgb);
+                    img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    img.setAdjustViewBounds(true);
+                    txt.setText(nombre);
+                    ly.setTag(id);
+                    ly.addView(img, 280, 380);
+                    ly.addView(txt, 280, 60);
+                    ly.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            MainActivity.replaceFragment(new DetailsFragment((Integer) view.getTag()));
+                        }
+                    });
+                    layoutCategorias.addView(ly, lp);
+                } while (c.moveToNext());
+            }
+            //fragmentTransaction.commit();
+        }
+    }
+
+    private void loadCategoria() {
         LinearLayout layoutCategorias = view.findViewById(R.id.LayoutCategorias);
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
-        /*final SQLiteDatabase dbw = dbHelper.getWritableDatabase();*/
+        final SQLiteDatabase dbw = dbHelper.getWritableDatabase();
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
 /*        if ("hola".equalsIgnoreCase("hoa")) {
             InsertCategories(dbw);
             InsertBooks(dbw);
         }*/
+        //insertCategoriasxLibro(dbw);
         layoutCategorias.removeAllViews();
         if (db != null) {
             Cursor c = db.rawQuery("SELECT * FROM categoria WHERE estado = 1", null);
@@ -97,8 +143,9 @@ public class Home extends Fragment {
                     ly.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            System.out.println("ID: " + view.getTag());
-                            MainActivity.replaceFragment(new DetailsFragment((Integer) view.getTag()));
+                            if (view.getTag() != null) {
+                                MainActivity.replaceFragment(new SeccionCategoriaFragment((Integer) view.getTag()));
+                            }
                         }
                     });
                     layoutCategorias.addView(ly, lp);
@@ -115,6 +162,30 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
         return view;
+    }
+
+    public void insertCategoriasxLibro(SQLiteDatabase db) {
+        ContentValues cv = new ContentValues();
+        cv.put("categoria_id", 1);
+        cv.put("libro_id", 1);
+        db.insert(Tablas.CATEOGRIA_LIBRO, null, cv);
+        ContentValues cv1 = new ContentValues();
+        cv1.put("categoria_id", 2);
+        cv1.put("libro_id", 2);
+        db.insert(Tablas.CATEOGRIA_LIBRO, null, cv1);
+        ContentValues cv2 = new ContentValues();
+        cv2.put("categoria_id", 3);
+        cv2.put("libro_id", 3);
+        db.insert(Tablas.CATEOGRIA_LIBRO, null, cv2);
+        ContentValues cv3 = new ContentValues();
+        cv3.put("categoria_id", 4);
+        cv3.put("libro_id", 4);
+        db.insert(Tablas.CATEOGRIA_LIBRO, null, cv3);
+        ContentValues cv4 = new ContentValues();
+        cv4.put("categoria_id", 4);
+        cv4.put("libro_id", 4);
+        db.insert(Tablas.CATEOGRIA_LIBRO, null, cv4);
+
     }
 
     public void InsertCategories(SQLiteDatabase db) {

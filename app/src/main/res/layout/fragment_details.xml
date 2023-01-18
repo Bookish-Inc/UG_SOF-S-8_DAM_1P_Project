@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsFragment">
+    tools:context=".Categorias.DetailsFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,7 +44,6 @@
                         android:checked="false"
                         android:clickable="true"
                         android:gravity="right"
-                        android:onClick="OnCheckedStar"
                         tools:visibility="visible" />
 
                 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.bookish_bookshop_app;
+package com.example.bookish_bookshop_app.Categorias;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
+import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
 import java.util.Arrays;
@@ -57,6 +58,13 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_details, container, false);
+        CheckBox checkBox= view.findViewById(R.id.chb_favorito);
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OnCheckedStar();
+            }
+        });
         return view;
     }
 
@@ -70,16 +78,15 @@ public class DetailsFragment extends Fragment {
         ImageView ImgPortada = (ImageView) view.findViewById(R.id.img_portada);
         TextView TxtCategoria = (TextView) view.findViewById(R.id.txt_categoria);
         checkBox = (CheckBox) view.findViewById(R.id.chb_favorito);
-        System.out.println("3");
+
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(view.getContext());
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
-        System.out.println("4");
         ConsultaLibro(db, this.idFinder, TxtFechapubli, TxtAutor, TxtPrecio, TxtSinopsis, ImgPortada, TxtCategoria);
         EsFavorito(db, this.idFinder);
     }
 
-    public void OnCheckedStar(View v) {
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(v.getContext());
+    public void OnCheckedStar() {
+        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         if (checkBox.isChecked()) {
             if (db != null) {

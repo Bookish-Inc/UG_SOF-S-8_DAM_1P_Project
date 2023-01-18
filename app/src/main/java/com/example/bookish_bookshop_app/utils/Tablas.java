@@ -5,4 +5,5 @@ public interface Tablas {
     String Cart = "Cart";
     String USUARIO = "Usuario";
     String Sugerencia ="Sugerencia";
+    String CATEOGRIA_LIBRO = "categoria_libro";
 }

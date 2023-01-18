@@ -30,13 +30,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Categorias.SeccionCategoria"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Carrito"
             android:exported="true">
             <intent-filter>
