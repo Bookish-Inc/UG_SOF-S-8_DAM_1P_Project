@@ -50,26 +50,6 @@ public class MainActivity extends AppCompatActivity {
      * Methods--------------------------------------------------------------------------------------
      */
 
-    private void callActivity() {
-        /**
-         * Only calls LogInActivity
-         */
-        startActivity(new Intent(MainActivity.this, LogInActivity.class));
-        finish();
-    }
 
-    private void deletePreferences() {
-        SharedPreferences preferences = getSharedPreferences("credentials", Context.MODE_PRIVATE);
-        String username_temp = preferences.getString("username", "");
-        String password_temp = preferences.getString("password", "");
-
-        if (username_temp != "" && password_temp != "") {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.remove("username");
-            editor.remove("password");
-
-            editor.apply();
-        }
-    }
 
 }

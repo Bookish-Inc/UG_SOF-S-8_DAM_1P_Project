@@ -6,7 +6,6 @@ public interface Tablas {
     String CREDENTIAL = "Credential";
     String USER = "User";
     // endregion
-
     String Libro = "Libro";
     String Cart = "Cart";
     String USUARIO = "Usuario";
