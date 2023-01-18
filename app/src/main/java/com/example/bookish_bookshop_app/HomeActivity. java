@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
 import com.example.bookish_bookshop_app.Categorias.SeccionCategoria;
+import com.example.bookish_bookshop_app.DetailActivity;
+import com.example.bookish_bookshop_app.Favoritos;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
 public class HomeActivity extends AppCompatActivity {
@@ -86,8 +88,6 @@ public class HomeActivity extends AppCompatActivity {
                 } while (c.moveToNext());
             }
             //fragmentTransaction.commit();
-            c.close();
-            db.close();
         }
     }
     public void onBtnFav(View v) {

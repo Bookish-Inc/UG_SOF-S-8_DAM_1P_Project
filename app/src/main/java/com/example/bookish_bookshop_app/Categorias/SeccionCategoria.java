@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.bookish_bookshop_app.DetailActivity;
-import com.example.bookish_bookshop_app.HomeActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
@@ -63,8 +62,8 @@ public class SeccionCategoria extends AppCompatActivity {
     }
 
     public void onBtnRegresar(View v) {
-        Intent call_home = new Intent(v.getContext(), HomeActivity.class);
-        startActivity(call_home);
+        /*Intent call_home = new Intent(v.getContext(), HomeActivity.class);
+        startActivity(call_home);*/
     }
 
     public void onBtnDetalle(View v, int id) {

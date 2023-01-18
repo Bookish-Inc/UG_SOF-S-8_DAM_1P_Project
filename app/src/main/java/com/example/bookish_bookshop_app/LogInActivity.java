@@ -73,7 +73,8 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void onBtnIniciarSesion(View v) {
-        Intent call_home = new Intent(v.getContext(), HomeActivity.class);
+
+        Intent call_home = new Intent(v.getContext(), MainActivity.class);
         startActivity(call_home);
     }
 

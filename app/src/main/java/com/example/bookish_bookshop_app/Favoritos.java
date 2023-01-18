@@ -29,11 +29,11 @@ public class Favoritos extends AppCompatActivity {
         HayFavoritos(db, LayoutEstante1, LayoutEstante2);
     }
 
-    public void HayFavoritos(SQLiteDatabase db, LinearLayout LayoutEstante1, LinearLayout LayoutEstante2){
+    public void HayFavoritos(SQLiteDatabase db, LinearLayout LayoutEstante1, LinearLayout LayoutEstante2) {
         if (db != null) {
             Cursor c = db.rawQuery("SELECT l._id, l.imagen FROM usuario_libro ul " +
                     "INNER JOIN libro l ON ul.libro_id = l._id " +
-                    "WHERE usuario_id = "+1, null);
+                    "WHERE usuario_id = " + 1, null);
             int i = 0;
             if (c != null && c.moveToNext()) {
                 c.moveToFirst();
@@ -59,14 +59,13 @@ public class Favoritos extends AppCompatActivity {
                         }
                     });
                     ly.addView(img, 250, 360);
-                    if(i > 3){
+                    if (i > 3) {
                         LayoutEstante2.addView(ly, lp);
-                    }else{
+                    } else {
                         LayoutEstante1.addView(ly, lp);
                     }
                 } while (c.moveToNext());
-            }
-            else{
+            } else {
                 Toast.makeText(getApplicationContext(), "No tienes favoritos", Toast.LENGTH_SHORT).show();
             }
         }
