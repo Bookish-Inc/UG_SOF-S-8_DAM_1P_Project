@@ -1,4 +1,4 @@
-package com.example.bookish_bookshop_app;
+package com.example.bookish_bookshop_app.Categorias;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -13,18 +13,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
+import com.example.bookish_bookshop_app.DetailsFragment;
+import com.example.bookish_bookshop_app.MainActivity;
+import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Home#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Home extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -41,23 +40,6 @@ public class Home extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Home.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Home newInstance(String param1, String param2) {
-        Home fragment = new Home();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,32 +57,26 @@ public class Home extends Fragment {
     }
 
     private void load() {
-        LinearLayout LayoutCategorias = view.findViewById(R.id.LayoutCategorias);
+        LinearLayout layoutCategorias = view.findViewById(R.id.LayoutCategorias);
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
-        final SQLiteDatabase dbw = dbHelper.getWritableDatabase();
+        /*final SQLiteDatabase dbw = dbHelper.getWritableDatabase();*/
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
-        if ("hola".equals("hol")){
+/*        if ("hola".equalsIgnoreCase("hoa")) {
             InsertCategories(dbw);
             InsertBooks(dbw);
-        }
+        }*/
+        layoutCategorias.removeAllViews();
         if (db != null) {
             Cursor c = db.rawQuery("SELECT * FROM categoria WHERE estado = 1", null);
             if (c != null && c.moveToNext()) {
                 c.moveToFirst();
                 int i = 0;
                 do {
+                    System.out.println("-============================================================-==============================================================");
                     @SuppressLint("Range") int id = c.getInt(c.getColumnIndex("_id"));
                     @SuppressLint("Range") byte[] imagen = c.getBlob(c.getColumnIndex("imagen"));
                     @SuppressLint("Range") String nombre = c.getString(c.getColumnIndex("nombre")).toString();
-                    /* Bundle bundle = new Bundle();
-                    bundle.putInt("id", id);
-                    bundle.putString("nombre", nombre);
-                    bundle.putByteArray("imagen", imagen);
-                    CategoriaFragment cfrag = new CategoriaFragment();
-                    cfrag.setArguments(bundle);
-                    fragmentTransaction.add(R.id.fragmentCategoria, cfrag, "categorieFrag"+i);
-                    fragmentTransaction.commit();*/
-                    LinearLayout ly = new LinearLayout(getContext());
+                    LinearLayout ly = new LinearLayout(view.getContext());
                     ly.setOrientation(LinearLayout.VERTICAL);
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 460);
                     lp.setMargins(20, 20, 20, 20);
@@ -115,15 +91,23 @@ public class Home extends Fragment {
                     img.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     img.setAdjustViewBounds(true);
                     txt.setText(nombre);
+                    ly.setTag(id);
                     ly.addView(img, 280, 380);
                     ly.addView(txt, 280, 60);
-                    LayoutCategorias.addView(ly, lp);
-                    System.out.println("Holaaaaaaaaaaaa<--------------------------------------------------------------------------------------");
+                    ly.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            System.out.println("ID: " + view.getTag());
+                            MainActivity.replaceFragment(new DetailsFragment((Integer) view.getTag()));
+                        }
+                    });
+                    layoutCategorias.addView(ly, lp);
                 } while (c.moveToNext());
             }
             //fragmentTransaction.commit();
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

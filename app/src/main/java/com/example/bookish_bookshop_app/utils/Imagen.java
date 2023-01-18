@@ -16,7 +16,10 @@ public class Imagen {
         return stream.toByteArray();
     }
 
-    public static Bitmap deserializar(byte[] bytes){
+    public static Bitmap deserializar(byte[] bytes) {
+        if (bytes == null){
+            throw new NullPointerException();
+        }
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 

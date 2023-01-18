@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".Home">
+    tools:context=".Categorias.Home">
 
     <ScrollView
         android:id="@+id/ScrollView"
@@ -89,7 +89,6 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_weight="1"
-                        android:onClick="onBtnFav"
                         app:srcCompat="@drawable/book_fantasma"
                         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -149,7 +148,6 @@
                         android:layout_margin="10dp"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:onClick="onBtnCategoria"
                         android:orientation="vertical">
 
                         <ImageView
@@ -179,7 +177,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:gravity="center"
-                        android:onClick="onBtnCategoria"
                         android:orientation="vertical">
 
                         <ImageView
@@ -209,7 +206,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:gravity="center"
-                        android:onClick="onBtnCategoria"
                         android:orientation="vertical">
 
                         <ImageView
@@ -239,7 +235,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:gravity="center"
-                        android:onClick="onBtnCategoria"
                         android:orientation="vertical">
 
                         <ImageView
@@ -269,7 +264,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:gravity="center"
-                        android:onClick="onBtnCategoria"
                         android:orientation="vertical">
 
                         <ImageView
@@ -299,7 +293,6 @@
                         android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:gravity="center"
-                        android:onClick="onBtnCategoria"
                         android:orientation="vertical">
 
                         <ImageView

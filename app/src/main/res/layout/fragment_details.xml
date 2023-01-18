@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo"
-    tools:context=".DetailActivity">
+    tools:context=".DetailsFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/fondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,30 +27,6 @@
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingTop="5dp">
-
-                    <Button
-                        android:id="@+id/btn_menu"
-                        android:layout_width="70dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="start"
-                        android:background="@drawable/boton_redondo_menu"
-                        android:insetLeft="2dp"
-                        android:onClick="onBtnRegresar"
-                        android:textColor="@color/white"
-                        app:backgroundTint="@color/colorPrimary"
-                        app:icon="@android:drawable/ic_menu_revert"
-                        app:iconPadding="10dp"
-                        app:iconTint="@color/white"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -87,7 +62,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/book_lider" />
-
 
 
             </LinearLayout>
@@ -244,5 +218,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

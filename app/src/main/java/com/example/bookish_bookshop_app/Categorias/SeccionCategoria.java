@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.bookish_bookshop_app.DetailActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
@@ -67,8 +66,8 @@ public class SeccionCategoria extends AppCompatActivity {
     }
 
     public void onBtnDetalle(View v, int id) {
-        Intent call_detail = new Intent(v.getContext(), DetailActivity.class);
+        /*Intent call_detail = new Intent(v.getContext(), DetailActivity.class);
         call_detail.putExtra("id", id);
-        startActivity(call_detail);
+        startActivity(call_detail);*/
     }
 }

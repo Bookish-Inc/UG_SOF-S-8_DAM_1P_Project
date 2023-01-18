@@ -9,18 +9,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.bookish_bookshop_app.Categorias.CategoriaFragment;
+import com.example.bookish_bookshop_app.Categorias.Home;
 import com.example.bookish_bookshop_app.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private static FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        fragmentManager = getSupportFragmentManager();
         replaceFragment(new Home());
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
                 case R.id.itemmenucategoria: {
-                    replaceFragment(new CategoriaFragment());
                     break;
                 }
 
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fram_layaout_main, fragment).commit();
+    public static void replaceFragment(Fragment fragment) {
+        fragmentManager.beginTransaction().replace(R.id.fram_layaout_main, fragment).commit();
     }
 
     /**

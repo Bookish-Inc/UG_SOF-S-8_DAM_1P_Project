@@ -72,8 +72,8 @@ public class Favoritos extends AppCompatActivity {
     }
 
     public void onBtnDetalle(View v, int id) {
-        Intent call_detail = new Intent(v.getContext(), DetailActivity.class);
+        /*Intent call_detail = new Intent(v.getContext(), DetailActivity.class);
         call_detail.putExtra("id", id);
-        startActivity(call_detail);
+        startActivity(call_detail);*/
     }
 }
