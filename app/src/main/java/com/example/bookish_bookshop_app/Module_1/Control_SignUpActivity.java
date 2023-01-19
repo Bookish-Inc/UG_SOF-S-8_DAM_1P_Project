@@ -72,6 +72,10 @@ public class Control_SignUpActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Methods--------------------------------------------------------------------------------------
+     */
+
     public void onRdgGenreSignUp(View view) {
         RadioButton rdbGenre = ((RadioButton) view);
 

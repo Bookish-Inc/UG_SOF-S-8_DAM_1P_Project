@@ -60,6 +60,10 @@ public class Control_UserActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Methods--------------------------------------------------------------------------------------
+     */
+
     public void onBtnEdit(View view) {
         callUserEditActivity();
     }

@@ -77,6 +77,10 @@ public class Control_UserEditActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Methods--------------------------------------------------------------------------------------
+     */
+
     public void loadDataUser() {
         // database connection
         MyOpenHelper db = new MyOpenHelper(getApplicationContext(), 1);
