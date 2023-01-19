@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.bookish_bookshop_app.Cart.FragmentCarrito;
 import com.example.bookish_bookshop_app.Categorias.Home;
 import com.example.bookish_bookshop_app.Categorias.favoritosFragment;
 import com.example.bookish_bookshop_app.databinding.ActivityMainBinding;
@@ -33,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 case R.id.itemmenufav: {
                     replaceFragment(new favoritosFragment());
+                    break;
+                }
+                case R.id.itemmenucart:{
+                    replaceFragment(new FragmentCarrito());
                     break;
                 }
 
