@@ -164,14 +164,9 @@ public class Data_Module_1 {
 
         data = db.getReadableDatabase().rawQuery(queryCredential, null);
 
-        System.out.println(" DATA DATA DATA ---> " + username);
-
         if (data != null && data.moveToNext()) {
             id_user = data.getInt(3);
-            System.out.println(" DATA DATA DATA ---> " + data.getInt(3));
         }
-
-
 
         return id_user;
     }
