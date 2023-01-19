@@ -1,6 +1,8 @@
 package com.example.bookish_bookshop_app.Categorias;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -54,10 +56,12 @@ public class favoritosFragment extends Fragment {
     }
 
     public void HayFavoritos(SQLiteDatabase db, LinearLayout LayoutEstante1, LinearLayout LayoutEstante2) {
+        SharedPreferences preferences = getContext().getSharedPreferences("credentials", Context.MODE_PRIVATE);
+        String id = preferences.getString("id_user", "");
         if (db != null) {
             Cursor c = db.rawQuery("SELECT l._id, l.imagen FROM usuario_libro ul " +
                     "INNER JOIN libro l ON ul.libro_id = l._id " +
-                    "WHERE usuario_id = " + 1, null);
+                    "WHERE usuario_id = " + Integer.parseInt(id), null);
             int i = 0;
             if (c != null && c.moveToNext()) {
                 c.moveToFirst();
