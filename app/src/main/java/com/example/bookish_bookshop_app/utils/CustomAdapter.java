@@ -157,6 +157,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // contents of the view with that element
         Cart cart = new ArrayList<>(carts.values()).get(position);
         if (cart != null) {
+            System.out.println("aaaaaaaaaaaaaaaaaa");
             viewHolder.getTitulo().setText(cart.getTitulo());
             viewHolder.getCantidad().setText(Integer.toString(cart.getCount()));
             viewHolder.getImagen().setImageBitmap(cart.getImagen());

@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="157dp"
-        android:paddingTop="15dp">
+        app:cardBackgroundColor="@color/cardview_shadow_end_color"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/cardview_shadow_end_color"
             android:orientation="horizontal"
             android:paddingTop="15dp">
 
@@ -34,10 +37,11 @@
                     android:id="@+id/tituloItem"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:fontFamily="@font/fresca"
+                    android:fontFamily="@font/fredoka_one"
                     android:text="Producto"
                     android:textAlignment="viewStart"
-                    android:textSize="20sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,4 +111,4 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
