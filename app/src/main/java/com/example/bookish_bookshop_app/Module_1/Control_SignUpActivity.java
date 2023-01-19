@@ -2,7 +2,6 @@ package com.example.bookish_bookshop_app.Module_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,10 +51,13 @@ public class Control_SignUpActivity extends AppCompatActivity {
         txtUsername = (EditText) findViewById(R.id.SignUp_txt_Username);
         txtPassword = (EditText) findViewById(R.id.SignUp_txt_Password);
 
-        List<String> listOccupation = Arrays.asList("--Elegir--", "Estudiante", "Profesor", "Profesional", "Docente");
+        // Array for spinner
+        List<String> listOccupation = Arrays.asList("", "Estudiante", "Profesor", "Profesional", "Docente");
 
+        // Set spinner text options
         sprOccupation.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, listOccupation));
 
+        // Sett Spinner behavior
         sprOccupation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -67,9 +69,10 @@ public class Control_SignUpActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
-    public void onRdgGenre(View view) {
+    public void onRdgGenreSignUp(View view) {
         RadioButton rdbGenre = ((RadioButton) view);
 
         if (!rdbGenre.isChecked()) {
@@ -77,11 +80,9 @@ public class Control_SignUpActivity extends AppCompatActivity {
         }
 
         if (view.getId() == R.id.SignUp_rdb_Female) {
-            toastMessage("Female");
-            genre = "Female";
+            genre = "Femenino";
         } else if (view.getId() == R.id.SignUp_rdb_Male) {
-            toastMessage("Male");
-            genre = "Male";
+            genre = "Masculino";
         }
     }
 
@@ -90,31 +91,34 @@ public class Control_SignUpActivity extends AppCompatActivity {
         Data_Module_1 data = new Data_Module_1(getApplicationContext(), db);
 
         // Variables
-        boolean flagUsername = false;
+        boolean existCredential = false;
+        boolean saveUser = false;
+        int id_user = 0;
         String name = txtName.getText().toString();
         String lastname = txtLastname.getText().toString();
         String phone = txtPhone.getText().toString();
         String email = txtEmail.getText().toString();
-        int id_credential = 0;
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
 
-        // verifies if username already exist
-        for (Model_Credential element: data.readDataCredentials()) {
-            if (username.equals(element.username)){
-                flagUsername = true;
-                toastMessage("Nombre de usuario ya existe");
-                break;
-            }
-        }
+        // Verifies if username exist
+        existCredential = data.readCredential_ByUsername(username);
 
-        if (!flagUsername) {
-            boolean savedData = data.createDataUser(name, lastname, phone, email, genre, occupation, username, password );
-            if (savedData) {
-                savePreferences(username, password);
+        if (!existCredential) {
+            // Create data User
+            saveUser = data.createUser(name, lastname, phone, email, genre, occupation, username, password);
+            if (saveUser) {
+                // Save SharedPreferences
+                id_user = data.readUser_IdByUsername(username);
+                savePreferences(username, password, id_user + "");
                 callMainActivity();
                 toastMessage("Cuenta creada");
+            } else {
+                toastMessage("No se pudo crear la cuenta");
             }
+        } else {
+            // User
+            toastMessage("Nombre de usuario ya existe");
         }
 
     }
@@ -134,12 +138,13 @@ public class Control_SignUpActivity extends AppCompatActivity {
         finish();
     }
 
-    private void savePreferences(String username_pref, String password_pref) {
+    private void savePreferences(String username_pref, String password_pref, String id_user_pref) {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("username", username_pref);
         editor.putString("password", password_pref);
+        editor.putString("id_user", id_user_pref);
 
         editor.commit();
     }

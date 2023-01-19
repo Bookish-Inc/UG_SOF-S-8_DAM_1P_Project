@@ -161,7 +161,7 @@
                     android:id="@+id/SignUp_rdb_Female"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onRdgGenre"
+                    android:onClick="onRdgGenreSignUp"
                     android:text="Femenino"
                     android:textSize="12sp" />
 
@@ -169,7 +169,7 @@
                     android:id="@+id/SignUp_rdb_Male"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onRdgGenre"
+                    android:onClick="onRdgGenreSignUp"
                     android:text="Masculino"
                     android:textSize="12sp" />
             </RadioGroup>

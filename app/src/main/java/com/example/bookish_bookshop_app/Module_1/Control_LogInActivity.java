@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
@@ -58,14 +59,17 @@ public class Control_LogInActivity extends AppCompatActivity {
         // Variables
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
-        boolean session = chkSession.isChecked();
-        int id_user = -1;
+        boolean activeSession = chkSession.isChecked();
+        boolean existCredential =false;
+        int id_user = 0;
 
-        // Verifies if the credentials match database
-        id_user = data.readDataCredential(username, password);
+        // Verifies if credentials exist
+        existCredential = data.readCredential(username, password);
 
-        if (id_user != -1) {
-            if (session) {  // if checkbox = true, then saves SharedPreferences
+        if (existCredential) {
+            if (activeSession) {
+                // if checkbox = true, then saves SharedPreferences
+                id_user = data.readUser_IdByUsername(username);
                 savePreferences(username, password, id_user + "");
                 toastMessage("Pereferncias guardadas");
             } else {
@@ -78,17 +82,19 @@ public class Control_LogInActivity extends AppCompatActivity {
 
     }
 
-    public void onLblSignUp(View view) {    // Calls SignUpActivity
+    public void onLblSignUp(View view) {
+        // Calls SignUpActivity
         startActivity(new Intent(Control_LogInActivity.this, Control_SignUpActivity.class));
     }
 
-    private void toastMessage(String message) { // toast a message
+    private void toastMessage(String message) {
+        // toast a message
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private void callMainActivity() {   // Only calls MainActivity
-//        startActivity(new Intent(Control_LogInActivity.this, MainActivity.class));
-        startActivity(new Intent(Control_LogInActivity.this, Control_UserActivity.class));
+    private void callMainActivity() {
+        // Only calls MainActivity
+        startActivity(new Intent(Control_LogInActivity.this, MainActivity.class));
         finish();
     }
 
