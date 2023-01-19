@@ -154,7 +154,7 @@
                             android:id="@+id/ImagenHomFragment1"
                             android:layout_width="101dp"
                             android:layout_height="135dp"
-                            android:scaleType="centerCrop"
+                            android:scaleType="centerInside"
                             app:srcCompat="@drawable/categoria_cf" />
 
                         <TextView

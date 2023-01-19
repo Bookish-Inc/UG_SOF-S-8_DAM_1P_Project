@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,12 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+      /* MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+       final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final SQLiteDatabase dbw = dbHelper.getWritableDatabase();
+        InsertCategories(db);
+        InsertBooks(db);
+        insertCategoriasxLibro(dbw);*/
         loadCategoria();
         loadLibros();
     }
@@ -85,6 +92,7 @@ public class Home extends Fragment {
                     img.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     img.setAdjustViewBounds(true);
                     txt.setText(nombre);
+                    txt.setGravity(Gravity.CENTER_HORIZONTAL);
                     ly.setTag(id);
                     ly.addView(img, 280, 380);
                     ly.addView(txt, 280, 60);
@@ -137,6 +145,7 @@ public class Home extends Fragment {
                     img.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     img.setAdjustViewBounds(true);
                     txt.setText(nombre);
+                    txt.setGravity(Gravity.CENTER_HORIZONTAL);
                     ly.setTag(id);
                     ly.addView(img, 280, 380);
                     ly.addView(txt, 280, 60);

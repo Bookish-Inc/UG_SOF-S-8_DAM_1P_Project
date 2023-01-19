@@ -2,6 +2,8 @@ package com.example.bookish_bookshop_app.Categorias;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -87,17 +89,19 @@ public class DetailsFragment extends Fragment {
     public void OnCheckedStar() {
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        SharedPreferences preferences = getContext().getSharedPreferences("credentials", Context.MODE_PRIVATE);
+        String id = preferences.getString("id_user", "");
         if (checkBox.isChecked()) {
             if (db != null) {
                 ContentValues cv = new ContentValues();
-                cv.put("usuario_id", 1); // ESPERANDING DATOS DE RENÁN MODULO USUARIOS
+                cv.put("usuario_id", Integer.parseInt(id));
                 cv.put("libro_id", id_libro);
                 db.insert("usuario_libro", null, cv);
                 Toast.makeText(view.getContext(), "Añadido a favoritos", Toast.LENGTH_SHORT).show();
             }
         } else {
             if (db != null) {
-                db.delete("usuario_libro", "libro_id=" + id_libro + " AND usuario_id=" + 1, null);
+                db.delete("usuario_libro", "libro_id=" + id_libro + " AND usuario_id=" + Integer.parseInt(id), null);
                 Toast.makeText(view.getContext(), "Se quitó de favoritos", Toast.LENGTH_SHORT).show();
             }
         }

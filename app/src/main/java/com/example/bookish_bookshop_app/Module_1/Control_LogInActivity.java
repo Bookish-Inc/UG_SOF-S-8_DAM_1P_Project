@@ -13,6 +13,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.bookish_bookshop_app.Categorias.Home;
+import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
@@ -87,8 +89,8 @@ public class Control_LogInActivity extends AppCompatActivity {
     }
 
     private void callMainActivity() {   // Only calls MainActivity
-//        startActivity(new Intent(Control_LogInActivity.this, MainActivity.class));
-        startActivity(new Intent(Control_LogInActivity.this, Control_UserActivity.class));
+      startActivity(new Intent(Control_LogInActivity.this, MainActivity.class));
+      //  startActivity(new Intent(Control_LogInActivity.this, Control_UserActivity.class));
         finish();
     }
 
