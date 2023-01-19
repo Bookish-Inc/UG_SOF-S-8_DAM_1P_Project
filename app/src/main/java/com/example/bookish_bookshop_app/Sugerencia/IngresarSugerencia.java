@@ -102,14 +102,25 @@ public class IngresarSugerencia extends AppCompatActivity {
     }
 
     public void onBtnRegistrar(View v) {
+        boolean flag= true;
         long id = dbSugerencias.insertarSugerencia(txtTitulo.getText().toString(), txtEdicion.getText().toString(), txtEditorial.getText().toString(), mSpinnerCubierta, dtpFechaPublicacion.getText().toString(), txtNombreAutor.getText().toString(),
                 txtApellido.getText().toString(), txtComentarios.getText().toString());
-        if (id > 0) {
-            Toast.makeText(IngresarSugerencia.this, "Registro Guardado", Toast.LENGTH_LONG).show();
-            limpiar();
-        } else {
-            Toast.makeText(IngresarSugerencia.this, "Errore al guardar Registro", Toast.LENGTH_LONG).show();
+
+        if(validar()){
+            if (id > 0) {
+                Toast.makeText(IngresarSugerencia.this, "Registro Guardado", Toast.LENGTH_LONG).show();
+                flag=true;
+            } else {
+                Toast.makeText(IngresarSugerencia.this, "Error al guardar Registro", Toast.LENGTH_LONG).show();
+                flag=false;
+            }
+            if (flag){
+                limpiar();
+            }
+        }else{
+            Toast.makeText(IngresarSugerencia.this, "Llene los campos requeridos", Toast.LENGTH_LONG).show();
         }
+
     }
 
     public void onBtnVerSugerencias(View v){
@@ -126,6 +137,44 @@ public class IngresarSugerencia extends AppCompatActivity {
         txtNombreAutor.setText("");
         txtApellido.setText("");
         txtComentarios.setText("");
+    }
+
+    private boolean validar(){
+        boolean retorno = true;
+        String titulo, edicion, editorial, fecha, nombre, apellido;
+        titulo = txtTitulo.getText().toString();
+        edicion = txtEdicion.getText().toString();
+        editorial = txtEditorial.getText().toString();
+        fecha = dtpFechaPublicacion.getText().toString();
+        nombre = txtNombreAutor.getText().toString();
+        apellido = txtApellido.getText().toString();
+
+        if(titulo.isEmpty()){
+            txtTitulo.setError("Ingrese un titulo");
+            retorno= false;
+        }
+        if(edicion.isEmpty()){
+            txtEdicion.setError("Ingrese una edicion");
+            retorno= false;
+        }
+        if(editorial.isEmpty()){
+            txtEditorial.setError("Ingrese un editorial");
+            retorno= false;
+        }
+        if(fecha.isEmpty()){
+            dtpFechaPublicacion.setError("Ingrese una fecha");
+            retorno= false;
+        }
+        if(nombre.isEmpty()){
+            txtNombreAutor.setError("Ingrese un nombre");
+            retorno= false;
+        }
+        if(apellido.isEmpty()){
+            txtApellido.setError("Ingrese un apellido");
+            retorno= false;
+        }
+
+        return retorno;
     }
 
 
