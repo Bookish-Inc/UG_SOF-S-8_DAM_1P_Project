@@ -138,7 +138,8 @@ public class Control_SignUpActivity extends AppCompatActivity {
     }
 
     private void callMainActivity() {   // Only calls MainActivity
-        startActivity(new Intent(Control_SignUpActivity.this, MainActivity.class));
+//        startActivity(new Intent(Control_SignUpActivity.this, MainActivity.class));
+        startActivity(new Intent(Control_SignUpActivity.this, Control_UserActivity.class));
         finish();
     }
 
