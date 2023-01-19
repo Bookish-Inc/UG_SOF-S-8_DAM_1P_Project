@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
+import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
 
@@ -59,7 +60,7 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_details, container, false);
-        CheckBox checkBox= view.findViewById(R.id.chb_favorito);
+        CheckBox checkBox = view.findViewById(R.id.chb_favorito);
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,19 +90,18 @@ public class DetailsFragment extends Fragment {
     public void OnCheckedStar() {
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
-        SharedPreferences preferences = getContext().getSharedPreferences("credentials", Context.MODE_PRIVATE);
-        String id = preferences.getString("id_user", "");
+        int id = MainActivity.getIdUser();
         if (checkBox.isChecked()) {
             if (db != null) {
                 ContentValues cv = new ContentValues();
-                cv.put("usuario_id", Integer.parseInt(id));
+                cv.put("usuario_id", id);
                 cv.put("libro_id", id_libro);
                 db.insert("usuario_libro", null, cv);
                 Toast.makeText(view.getContext(), "Añadido a favoritos", Toast.LENGTH_SHORT).show();
             }
         } else {
             if (db != null) {
-                db.delete("usuario_libro", "libro_id=" + id_libro + " AND usuario_id=" + Integer.parseInt(id), null);
+                db.delete("usuario_libro", "libro_id=" + id_libro + " AND usuario_id=" + id, null);
                 Toast.makeText(view.getContext(), "Se quitó de favoritos", Toast.LENGTH_SHORT).show();
             }
         }

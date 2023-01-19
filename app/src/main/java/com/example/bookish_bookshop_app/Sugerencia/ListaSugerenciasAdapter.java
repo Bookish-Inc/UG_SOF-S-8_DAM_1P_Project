@@ -27,7 +27,6 @@ public class ListaSugerenciasAdapter extends RecyclerView.Adapter<ListaSugerenci
 
     @Override
     public void onBindViewHolder(@NonNull ListaSugerenciasAdapter.SugerenciasViewHolder holder, int position) {
-
         holder.viewTitulo.setText(listaSugerencias.get(position).getTitulo());
         holder.viewEditorial.setText(listaSugerencias.get(position).getEditorial());
         holder.viewAutor.setText(listaSugerencias.get(position).getNombreAutor()+" " +listaSugerencias.get(position).getApellidoAutor());

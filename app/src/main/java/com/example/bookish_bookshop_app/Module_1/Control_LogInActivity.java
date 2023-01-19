@@ -46,7 +46,7 @@ public class Control_LogInActivity extends AppCompatActivity {
 
         // Verifies: if SharedPreferences exist then autologin
         if (loadPreferences()) {
-            callMainActivity();
+            callMainActivity(1);
             // TODO: send credential to UserActivity
         }
     }
@@ -61,7 +61,7 @@ public class Control_LogInActivity extends AppCompatActivity {
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
         boolean activeSession = chkSession.isChecked();
-        boolean existCredential =false;
+        boolean existCredential = false;
         int id_user = 0;
 
         // Verifies if credentials exist
@@ -76,7 +76,7 @@ public class Control_LogInActivity extends AppCompatActivity {
             } else {
                 toastMessage("Preferencias NO guardadas");
             }
-            callMainActivity();
+            callMainActivity(id_user);
         } else {
             toastMessage("Datos Incorrectos");
         }
@@ -93,10 +93,11 @@ public class Control_LogInActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private void callMainActivity() {
+    private void callMainActivity(int idUser) {
         // Only calls MainActivity
-//        startActivity(new Intent(Control_LogInActivity.this, MainActivity.class));
-        startActivity(new Intent(Control_LogInActivity.this, Control_UserActivity.class));
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("idUser", idUser);
+        startActivity(intent);
         finish();
     }
 

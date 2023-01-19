@@ -48,20 +48,19 @@ public class favoritosFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        LinearLayout LayoutEstante1 =  view.findViewById(R.id.LinearLayout1);
-        LinearLayout LayoutEstante2 =  view.findViewById(R.id.LinearLayout2);
+        LinearLayout LayoutEstante1 = view.findViewById(R.id.LinearLayout1);
+        LinearLayout LayoutEstante2 = view.findViewById(R.id.LinearLayout2);
         MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
         HayFavoritos(db, LayoutEstante1, LayoutEstante2);
     }
 
     public void HayFavoritos(SQLiteDatabase db, LinearLayout LayoutEstante1, LinearLayout LayoutEstante2) {
-        SharedPreferences preferences = getContext().getSharedPreferences("credentials", Context.MODE_PRIVATE);
-        String id = preferences.getString("id_user", "");
-        if (db != null) {
+        int id = MainActivity.getIdUser();
+        if (db != null && id != 0) {
             Cursor c = db.rawQuery("SELECT l._id, l.imagen FROM usuario_libro ul " +
                     "INNER JOIN libro l ON ul.libro_id = l._id " +
-                    "WHERE usuario_id = " + Integer.parseInt(id), null);
+                    "WHERE usuario_id = " + id, null);
             int i = 0;
             if (c != null && c.moveToNext()) {
                 c.moveToFirst();

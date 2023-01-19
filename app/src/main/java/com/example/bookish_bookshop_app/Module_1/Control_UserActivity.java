@@ -44,20 +44,20 @@ public class Control_UserActivity extends AppCompatActivity {
 
         // load User id
         int id_user = loadPreferences();
+        if (id_user != 0){
+            MyOpenHelper db = new MyOpenHelper(getApplicationContext(), 1);
+            Data_Module_1 data = new Data_Module_1(getApplicationContext(), db);
 
+            List<String> userData = data.readDataUser(id_user);
+
+            txtFullName.setText(userData.get(0) + " " + userData.get(1));
+            txtPhone.setText(userData.get(2));
+            txtEmail.setText(userData.get(3));
+            txtGenre.setText(userData.get(4));
+            txtOccupation.setText(userData.get(5));
+            txtUsername.setText(userData.get(6));
+        }
         // database connection
-        MyOpenHelper db = new MyOpenHelper(getApplicationContext(), 1);
-        Data_Module_1 data = new Data_Module_1(getApplicationContext(), db);
-
-        List<String> userData = data.readDataUser(id_user);
-
-        txtFullName.setText(userData.get(0) + " " + userData.get(1));
-        txtPhone.setText(userData.get(2));
-        txtEmail.setText(userData.get(3));
-        txtGenre.setText(userData.get(4));
-        txtOccupation.setText(userData.get(5));
-        txtUsername.setText(userData.get(6));
-
     }
 
     /**
@@ -89,7 +89,7 @@ public class Control_UserActivity extends AppCompatActivity {
 
     private int loadPreferences() {
         SharedPreferences preferences = getSharedPreferences("credentials", Context.MODE_PRIVATE);
-        String id_user_temp = preferences.getString("id_user", "");
+        String id_user_temp = preferences.getString("id_user", "0");
         return Integer.parseInt(id_user_temp);
     }
 

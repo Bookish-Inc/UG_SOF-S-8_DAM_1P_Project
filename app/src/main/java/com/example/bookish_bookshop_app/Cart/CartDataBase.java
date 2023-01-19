@@ -77,7 +77,6 @@ public class CartDataBase {
     public HashMap<Integer, Cart> getCarts() {
         HashMap<Integer, Cart> cartList = new HashMap<>();
         Cursor data = db.getReadableDatabase().rawQuery("SELECT c.id, c.id_libro, l.titulo, l.precio,l.imagen, c.cantidad FROM Libro l, Cart c where c.id_libro = l.id;", null);
-        System.out.println("Datos:::: "+data.getCount());
         while (data != null && data.moveToNext()) {
             cartList.put(data.getInt(0), new Cart(data.getInt(0), data.getInt(1), data.getString(2), data.getDouble(3), Imagen.deserializar(data.getBlob(4)), data.getInt(5)));
         }

@@ -4,20 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.bookish_bookshop_app.Cart.FragmentCarrito;
 import com.example.bookish_bookshop_app.Categorias.Home;
 import com.example.bookish_bookshop_app.Categorias.favoritosFragment;
+import com.example.bookish_bookshop_app.Sugerencia.FragmentSugerencia;
 import com.example.bookish_bookshop_app.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private static FragmentManager fragmentManager;
+    private static int idUser = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fragmentManager = getSupportFragmentManager();
+        Bundle bundle = getIntent().getExtras();
+        idUser = bundle.getInt("idUser", 1);
         replaceFragment(new Home());
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -36,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
                     replaceFragment(new favoritosFragment());
                     break;
                 }
-                case R.id.itemmenucart:{
+                case R.id.itemmenucart: {
                     replaceFragment(new FragmentCarrito());
                     break;
+                }
+                case R.id.itemmenusuggest: {
+                    replaceFragment(new FragmentSugerencia());
                 }
 
             }
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
      * Methods--------------------------------------------------------------------------------------
      */
 
-
-
+    public static int getIdUser() {
+        return idUser;
+    }
 }

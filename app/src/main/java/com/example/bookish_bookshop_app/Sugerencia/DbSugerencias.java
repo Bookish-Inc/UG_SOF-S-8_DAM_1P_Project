@@ -25,7 +25,7 @@ public class DbSugerencias {
 
 
     public long insertarSugerencia(String titulo, String edicion, String editorial, String cubierta,
-                                   String fechaPublicacion, String nombreAutor, String apellidoAutor, String comentarios) {
+                                    String nombreAutor, String apellidoAutor, String comentarios) {
 
         long id = 0;
         try {
@@ -34,7 +34,6 @@ public class DbSugerencias {
             values.put("edicion", edicion);
             values.put("editorial", editorial);
             values.put("cubierta", cubierta);
-            values.put("fechaPublicacion", fechaPublicacion);
             values.put("nombreAutor", nombreAutor);
             values.put("apellidoAutor", apellidoAutor);
             values.put("comentarios", comentarios);
@@ -66,10 +65,9 @@ public class DbSugerencias {
                 sugerencia.setEdicion(cursorSugerencias.getString(2));
                 sugerencia.setEditorial(cursorSugerencias.getString(3));
                 sugerencia.setCubierta(cursorSugerencias.getString(4));
-                sugerencia.setFechaPublicacion(cursorSugerencias.getString(5));
-                sugerencia.setNombreAutor(cursorSugerencias.getString(6));
-                sugerencia.setApellidoAutor(cursorSugerencias.getString(7));
-                sugerencia.setComentarios(cursorSugerencias.getString(8));
+                sugerencia.setNombreAutor(cursorSugerencias.getString(5));
+                sugerencia.setApellidoAutor(cursorSugerencias.getString(6));
+                sugerencia.setComentarios(cursorSugerencias.getString(7));
 
                 listaSugerencias.add(sugerencia);
             } while (cursorSugerencias.moveToNext());
