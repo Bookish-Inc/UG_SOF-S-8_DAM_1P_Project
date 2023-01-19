@@ -3,6 +3,8 @@ package com.example.bookish_bookshop_app.Module_1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
@@ -104,21 +107,41 @@ public class Control_SignUpActivity extends AppCompatActivity {
                 break;
             }
         }
+
         if (!flagUsername) {
-            data.createDataUser(name, lastname, phone, email, genre, occupation, username, password );
+            boolean savedData = data.createDataUser(name, lastname, phone, email, genre, occupation, username, password );
+            if (savedData) {
+                savePreferences(username, password);
+                callMainActivity();
+                toastMessage("Cuenta creada");
+            }
         }
 
-        toastMessage("Crear Cuenta");
     }
 
     public void onBtnCancel(View view) {
-        finish();
         toastMessage("Cancelar");
+        finish();
     }
 
     private void toastMessage(String message) {
         // toast a message
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void callMainActivity() {   // Only calls MainActivity
+        startActivity(new Intent(Control_SignUpActivity.this, MainActivity.class));
+        finish();
+    }
+
+    private void savePreferences(String username_pref, String password_pref) {
+        SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("username", username_pref);
+        editor.putString("password", password_pref);
+
+        editor.commit();
     }
 
 }
