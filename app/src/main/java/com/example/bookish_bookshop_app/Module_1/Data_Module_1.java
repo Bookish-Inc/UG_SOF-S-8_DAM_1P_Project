@@ -21,30 +21,11 @@ public class Data_Module_1 {
     }
 
     // region Default data for database  -----------------------------------------------
-    public void insertDataCredential() {
-        /**
-         * Insert default credential data into database
-         */
-        Model_Credential[] credentials = {
-                new Model_Credential(1, "Helen", "1234"),
-                new Model_Credential(2, "Nefi", "1234"),
-                new Model_Credential(3, "Renan", "1234"),
-                new Model_Credential(4, "Vane", "1234"),
-        };
-
-        for (Model_Credential element : credentials) {
-            ContentValues values = new ContentValues();
-            values.put("username", element.username);
-            values.put("password", element.password);
-            db.getWritableDatabase().insert(Tablas.CREDENTIAL, null, values);
-        }
-
-    }
-
     public void insertDataUser() {
         /**
          * Insert default user data into database
          */
+        // Variables
         Model_User[] users = {
                 new Model_User(1, "Helen", "Bernal", "0983 775 380", "helen.bernalv@ug.edu.ec", "Femenino", "Estudiante", 1),
                 new Model_User(2, "Nefi", "Reyes", "0958 140 795", "nefi.reyest@ug.edu.ec", "Masculino", "Estudiante", 2),
@@ -52,16 +33,44 @@ public class Data_Module_1 {
                 new Model_User(4, "Vanessa", "Ronquillo", "0978 588 276", "vanessa.ronquillos@ug.edu.ec", "Femenino", "Estudiante", 4)
         };
 
-        for (Model_User element: users) {
+        Cursor data = db.getReadableDatabase().rawQuery("SELECT * FROM User", null);
+
+        if (data.getCount() == 0) {
+
+            for (Model_User element : users) {
+                ContentValues values = new ContentValues();
+                values.put("name", element.name);
+                values.put("lastname", element.lastname);
+                values.put("phone", element.phone);
+                values.put("email", element.email);
+                values.put("genre", element.genre);
+                values.put("occupation", element.occupation);
+                values.put("id_credential", element.id_credential);
+                db.getWritableDatabase().insert(Tablas.USER, null, values);
+            }
+
+            insertDataCredential();
+        }
+
+    }
+
+    public void insertDataCredential() {
+        /**
+         * Insert default credential data into database if table is empty
+         */
+        // Variables
+        Model_Credential[] credentials = {
+                new Model_Credential(1, "helen", "1234"),
+                new Model_Credential(2, "nefi", "1234"),
+                new Model_Credential(3, "renan", "1234"),
+                new Model_Credential(4, "vane", "1234"),
+        };
+
+        for (Model_Credential element : credentials) {
             ContentValues values = new ContentValues();
-            values.put("name",element.name);
-            values.put("lastname",element.lastname);
-            values.put("phone",element.phone);
-            values.put("email",element.email);
-            values.put("genre",element.genre);
-            values.put("occupation",element.occupation);
-            values.put("id_credential",element.id_credential);
-            db.getWritableDatabase().insert(Tablas.USER, null, values);
+            values.put("username", element.username);
+            values.put("password", element.password);
+            db.getWritableDatabase().insert(Tablas.CREDENTIAL, null, values);
         }
 
     }
@@ -74,32 +83,44 @@ public class Data_Module_1 {
         boolean dataSavedCredential = false;
         int id_credential = 0;
 
-        dataSavedCredential = createDataCredentials (username, password);
+        dataSavedCredential = createDataCredentials(username, password);
 
         if (dataSavedCredential) {
-            // find id_credential
-            for (Model_Credential element: readDataCredentials()) {
-                if (username.equals(element.username)){
-                    id_credential = element.id;
-                    break;
+
+            try {
+                // find id_credential
+                for (Model_Credential element : readDataCredentials()) {
+                    if (username.equals(element.username)) {
+                        id_credential = element.id;
+                        break;
+                    }
                 }
+
+                // Save User data
+                ContentValues values = new ContentValues();
+                values.put("name", name);
+                values.put("lastname", lastname);
+                values.put("phone", phone);
+                values.put("email", email);
+                values.put("genre", genre);
+                values.put("occupation", occupation);
+                values.put("id_credential", id_credential);
+                db.getWritableDatabase().insert(Tablas.USER, null, values);
+
+                dataSavedUser = true;
+
+            } catch (Exception exception) {
+                exception.printStackTrace();
+                dataSavedUser = false;
             }
 
-            ContentValues values = new ContentValues();
-            values.put("name", name);
-            values.put("lastname", lastname);
-            values.put("phone", phone);
-            values.put("email", email);
-            values.put("genre", genre);
-            values.put("occupation", occupation);
-            values.put("id_credential", id_credential);
-            db.getWritableDatabase().insert(Tablas.USER, null, values);
         }
 
         return dataSavedUser;
     }
 
     public void readDataUser() {
+
 
     }
 
@@ -114,16 +135,45 @@ public class Data_Module_1 {
 
 
     // region Credential CRUD -----------------------------------------------
-    public boolean createDataCredentials (String username, String password) {
+    public boolean createDataCredentials(String username, String password) {
         // Variables
-        boolean dataSaved = false;
+        boolean savedData = false;
 
-        ContentValues values = new ContentValues();
-        values.put("username", username);
-        values.put("password", password);
-        db.getWritableDatabase().insert(Tablas.CREDENTIAL, null, values);
+        try {
+            // Save Credential data
+            ContentValues values = new ContentValues();
+            values.put("username", username);
+            values.put("password", password);
+            db.getWritableDatabase().insert(Tablas.CREDENTIAL, null, values);
 
-        return dataSaved;
+            savedData = true;
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            savedData = false;
+        }
+
+        return savedData;
+    }
+
+    public int readDataCredential(String username, String password) {
+        // Variables
+        int id_user = -1;
+        Cursor data = null;
+        String queryCredential = "SELECT c.id, c.username, c.password, u.id as id_user FROM Credential c INNER JOIN User u ON c.id = u.id_credential WHERE username = '" + username + "' AND password = '" + password + "'";
+
+        data = db.getReadableDatabase().rawQuery(queryCredential, null);
+
+        System.out.println(" DATA DATA DATA ---> " + username);
+
+        if (data != null && data.moveToNext()) {
+            id_user = data.getInt(3);
+            System.out.println(" DATA DATA DATA ---> " + data.getInt(3));
+        }
+
+
+
+        return id_user;
     }
 
     public List<Model_Credential> readDataCredentials() {
@@ -131,6 +181,7 @@ public class Data_Module_1 {
         List<Model_Credential> credentials = new ArrayList<>();
 
         Cursor data = db.getReadableDatabase().rawQuery("SELECT c.id, c.username, c.password FROM Credential c", null);
+
         while (data != null && data.moveToNext()) {
             Model_Credential getCredentials = new Model_Credential(data.getInt(0), data.getString(1), data.getString(2));
             credentials.add(getCredentials);
@@ -147,10 +198,6 @@ public class Data_Module_1 {
 
     }
     // endregion
-
-
-
-
 
 
 }

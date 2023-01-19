@@ -13,11 +13,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.MyOpenHelper;
-
-import java.util.List;
 
 public class Control_LogInActivity extends AppCompatActivity {
     // Global Variables
@@ -42,13 +39,12 @@ public class Control_LogInActivity extends AppCompatActivity {
         db = new MyOpenHelper(getApplicationContext(), 1);
         data = new Data_Module_1(getApplicationContext(), db);
 
-        // Initialize data in database
-        data.insertDataCredential();
+        // Initialize default data in database
         data.insertDataUser();
 
         // Verifies: if SharedPreferences exist then autologin
         if (loadPreferences()) {
-            callActivity();
+            callMainActivity();
             // TODO: send credential to UserActivity
         }
     }
@@ -60,63 +56,50 @@ public class Control_LogInActivity extends AppCompatActivity {
     public void onBtnLogIn(View view) {
 
         // Variables
-        boolean flag = false;
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
         boolean session = chkSession.isChecked();
+        int id_user = -1;
 
         // Verifies if the credentials match database
-        for (Model_Credential element : data.readDataCredentials()) {
-            if (username.equals(element.username) && password.equals(element.password)) {
-                flag = true;
-                break; // para que salga cuando ya encuentre la respuesta
-            }
-        }
+        id_user = data.readDataCredential(username, password);
 
-        if (flag) {
-            if (session) {
-                // if checkbox = true, then saves SharedPreferences
-                savePreferences();
+        if (id_user != -1) {
+            if (session) {  // if checkbox = true, then saves SharedPreferences
+                savePreferences(username, password, id_user + "");
                 toastMessage("Pereferncias guardadas");
             } else {
                 toastMessage("Preferencias NO guardadas");
             }
-            callActivity();
-            toastMessage("Pereferncias guardadas");
+            callMainActivity();
         } else {
             toastMessage("Datos Incorrectos");
         }
 
     }
 
-    public void onLblSignUp(View view) {
-        // Calls SignUpActivity
+    public void onLblSignUp(View view) {    // Calls SignUpActivity
         startActivity(new Intent(Control_LogInActivity.this, Control_SignUpActivity.class));
-        //finish();
     }
 
-    private void toastMessage(String message) {
-        // toast a message
+    private void toastMessage(String message) { // toast a message
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    private void callActivity() {
-        /**
-         * Only calls MainActivity
-         */
-        startActivity(new Intent(Control_LogInActivity.this, MainActivity.class));
+    private void callMainActivity() {   // Only calls MainActivity
+//        startActivity(new Intent(Control_LogInActivity.this, MainActivity.class));
+        startActivity(new Intent(Control_LogInActivity.this, Control_UserActivity.class));
         finish();
     }
 
     // region Methods: SharedPreferences
-    private void savePreferences() {
+    private void savePreferences(String username_pref, String password_pref, String id_user_pref) {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
-        String username_pref = txtUsername.getText().toString();
-        String password_pref = txtPassword.getText().toString();
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("username", username_pref);
         editor.putString("password", password_pref);
+        editor.putString("id_user", id_user_pref);
 
         editor.commit();
     }

@@ -15,9 +15,9 @@
         android:theme="@style/Theme.Bookish_Bookshop_app"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-
-
+        <activity
+            android:name=".Module_1.Control_UserEditActivity"
+            android:exported="false" />
         <activity
             android:name=".VisualizarSugerencias"
             android:exported="false">
@@ -35,30 +35,26 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
-        <!-- region Module_1 -->
+        </activity> <!-- region Module_1 -->
         <activity
             android:name=".Module_1.Control_LogInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".Module_1.Control_SignUpActivity"
             android:exported="false" />
-
         <activity
             android:name=".Module_1.Control_UserActivity"
-            android:exported="false" />
-        <!-- endregion Module_1 -->
-
+            android:exported="false" /> <!-- endregion Module_1 -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
