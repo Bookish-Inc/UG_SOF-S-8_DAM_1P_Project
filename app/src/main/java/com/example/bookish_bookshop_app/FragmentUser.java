@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookish_bookshop_app.Module_1.Control_LogInActivity;
-import com.example.bookish_bookshop_app.Module_1.Control_UserActivity;
-import com.example.bookish_bookshop_app.Module_1.Control_UserEditActivity;
 import com.example.bookish_bookshop_app.Module_1.Data_Module_1;
 import com.example.bookish_bookshop_app.Module_1.FragmentUserEdit;
 import com.example.bookish_bookshop_app.utils.MyOpenHelper;

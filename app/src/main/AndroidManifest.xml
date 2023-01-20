@@ -16,9 +16,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Module_1.Control_UserEditActivity"
-            android:exported="false" />
-        <activity
             android:name=".Carrito"
             android:exported="true">
             <meta-data

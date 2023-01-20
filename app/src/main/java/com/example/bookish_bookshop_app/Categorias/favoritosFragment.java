@@ -22,6 +22,7 @@ import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
 import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
+import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
 
 public class favoritosFragment extends Fragment {
@@ -50,7 +51,7 @@ public class favoritosFragment extends Fragment {
         super.onResume();
         LinearLayout LayoutEstante1 = view.findViewById(R.id.LinearLayout1);
         LinearLayout LayoutEstante2 = view.findViewById(R.id.LinearLayout2);
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        MyOpenHelper dbHelper = new MyOpenHelper(getContext(),1);
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
         HayFavoritos(db, LayoutEstante1, LayoutEstante2);
     }

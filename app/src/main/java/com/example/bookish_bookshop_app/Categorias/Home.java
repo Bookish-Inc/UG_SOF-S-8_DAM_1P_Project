@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
+import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 import com.example.bookish_bookshop_app.utils.Tablas;
 
 
@@ -53,11 +54,11 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        MyOpenHelper dbHelper = new MyOpenHelper(getContext(),1);
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
         final SQLiteDatabase dbw = dbHelper.getWritableDatabase();
         if (db != null) {
-            Cursor c = db.rawQuery("SELECT COUNT(*) AS CONTAR FROM libro", null);
+            Cursor c = db.rawQuery("SELECT COUNT(*) AS CONTAR FROM Libro", null);
             if (c != null && c.moveToNext()) {
                 @SuppressLint("Range") int contador = c.getInt(0);
                 if(contador == 0){
@@ -73,11 +74,11 @@ public class Home extends Fragment {
 
     private void loadLibros() {
         LinearLayout layoutCategorias = view.findViewById(R.id.LayoutSugerencias);
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        MyOpenHelper dbHelper = new MyOpenHelper(getContext(),1);
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
         layoutCategorias.removeAllViews();
         if (db != null) {
-            Cursor c = db.rawQuery("SELECT _id, titulo, imagen FROM libro WHERE estado = 1", null);
+            Cursor c = db.rawQuery("SELECT _id, titulo, imagen FROM Libro WHERE estado = 1", null);
             if (c != null && c.moveToNext()) {
                 c.moveToFirst();
                 int i = 0;
@@ -119,7 +120,7 @@ public class Home extends Fragment {
 
     private void loadCategoria() {
         LinearLayout layoutCategorias = view.findViewById(R.id.LayoutCategorias);
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        MyOpenHelper dbHelper = new MyOpenHelper(getContext(),1);
         final SQLiteDatabase dbw = dbHelper.getWritableDatabase();
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
 /*        if ("hola".equalsIgnoreCase("hoa")) {

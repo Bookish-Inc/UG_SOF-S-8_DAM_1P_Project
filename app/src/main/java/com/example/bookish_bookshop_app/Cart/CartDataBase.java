@@ -86,7 +86,7 @@ public class CartDataBase {
     public void insertCart(int idLibro) {
         ContentValues values = new ContentValues();
         values.put("id_libro", idLibro);
-        values.put("cantidad", 3);
+        values.put("cantidad", 1);
         db.getWritableDatabase().insert(Tablas.Cart, null, values);
     }
 

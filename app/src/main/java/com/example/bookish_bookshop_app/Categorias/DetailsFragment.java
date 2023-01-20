@@ -14,15 +14,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bookish_bookshop_app.Cart.CartDataBase;
 import com.example.bookish_bookshop_app.Categorias.MyOpenHelperCatalog;
 import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
+import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
 import java.util.Arrays;
 
@@ -80,15 +83,24 @@ public class DetailsFragment extends Fragment {
         ImageView ImgPortada = view.findViewById(R.id.img_portada);
         TextView TxtCategoria = view.findViewById(R.id.txt_categoria);
         checkBox = view.findViewById(R.id.chb_favorito);
+        Button btnAdd = view.findViewById(R.id.Btn_Agregar);
+        btnAdd.setOnClickListener(this::addCart);
 
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(view.getContext());
+        MyOpenHelper dbHelper = new MyOpenHelper(view.getContext(),1);
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         ConsultaLibro(db, this.idFinder, TxtFechapubli, TxtAutor, TxtPrecio, TxtSinopsis, ImgPortada, TxtCategoria);
         EsFavorito(db, this.idFinder);
     }
 
+    private void addCart(View view) {
+        MyOpenHelper db = new MyOpenHelper(getContext(), 1);
+        CartDataBase cartDataBase = new CartDataBase(getContext(), db);
+        cartDataBase.insertCart(idFinder);
+        Toast.makeText(view.getContext(), "Se ha agregado un elemento", Toast.LENGTH_SHORT).show();
+    }
+
     public void OnCheckedStar() {
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        MyOpenHelper dbHelper = new MyOpenHelper(getContext(),1);
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         int id = MainActivity.getIdUser();
         if (checkBox.isChecked()) {
@@ -123,7 +135,7 @@ public class DetailsFragment extends Fragment {
         if (db != null) {
             Cursor c = db.rawQuery("SELECT l._id, l.fecha_publicacion, l.titulo, l.imagen, l.descripcion, l.precio, l.autor, " +
                     "l.num_paginas, l.cantidad, c._id AS id_categoria, GROUP_CONCAT(c.nombre, '/ ') AS categoria " +
-                    "FROM libro l " +
+                    "FROM Libro l " +
                     ", categoria c " +
                     "WHERE l._id = " + id + " and l._id = c._id;", null);
             if (c != null) {

@@ -12,7 +12,7 @@ import com.example.bookish_bookshop_app.utils.Tablas;
 
 public class MyOpenHelperCatalog extends SQLiteOpenHelper {
     //esto se debe ejecutar sola una vez
-    private static final String TABLE_LIBRO = "CREATE TABLE IF NOT EXISTS libro(" +
+    private static final String TABLE_LIBRO = "CREATE TABLE IF NOT EXISTS Libro(" +
             "_id INTEGER PRIMARY KEY, " +
             "titulo TEXT, " +
             "imagen BLOB, " +
@@ -43,11 +43,10 @@ public class MyOpenHelperCatalog extends SQLiteOpenHelper {
             ")";
     String sql_categoria_libro =
             "INSERT OR IGNORE INTO categoria_libro (_id, categoria_id, libro_id) VALUES (1,4,1),(2,3,2),(3,1,3),(4,4,4),(5,6,4),(6,5,5),(7,2,6)";
-    private static final String DB_NAME = "NetCore.sqlite";
     private static final int DB_VERSION = 1;
 
     public MyOpenHelperCatalog(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, "BookishDB", null, DB_VERSION);
     }
 
     @Override

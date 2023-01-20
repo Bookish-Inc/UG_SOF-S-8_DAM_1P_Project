@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import com.example.bookish_bookshop_app.MainActivity;
 import com.example.bookish_bookshop_app.R;
 import com.example.bookish_bookshop_app.utils.Imagen;
+import com.example.bookish_bookshop_app.utils.MyOpenHelper;
 
 
 public class SeccionCategoriaFragment extends Fragment {
@@ -50,11 +51,11 @@ public class SeccionCategoriaFragment extends Fragment {
     void loadCategory() {
         LinearLayout layoutEstante1 = view.findViewById(R.id.LinearLayout1);
         int id = this.id;
-        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        MyOpenHelper dbHelper = new MyOpenHelper(getContext(),1);
         final SQLiteDatabase db = dbHelper.getReadableDatabase();
         layoutEstante1.removeAllViews();
         if (db != null) {
-            Cursor c = db.rawQuery("SELECT l.imagen, l._id FROM libro l, categoria_libro cl  WHERE cl.categoria_id =" + id + " and libro_id = l._id", null);
+            Cursor c = db.rawQuery("SELECT l.imagen, l._id FROM Libro l, categoria_libro cl  WHERE cl.categoria_id =" + id + " and libro_id = l._id", null);
             if (c != null && c.moveToNext()) {
                 do {
                     @SuppressLint("Range") byte[] imagen = c.getBlob(c.getColumnIndex("imagen"));
