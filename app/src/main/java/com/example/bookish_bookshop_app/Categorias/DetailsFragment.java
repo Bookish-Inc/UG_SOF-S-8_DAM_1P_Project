@@ -86,7 +86,7 @@ public class DetailsFragment extends Fragment {
         Button btnAdd = view.findViewById(R.id.Btn_Agregar);
         btnAdd.setOnClickListener(this::addCart);
 
-        MyOpenHelper dbHelper = new MyOpenHelper(view.getContext(),1);
+        MyOpenHelper dbHelper = new MyOpenHelper(view.getContext(), 1);
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         ConsultaLibro(db, this.idFinder, TxtFechapubli, TxtAutor, TxtPrecio, TxtSinopsis, ImgPortada, TxtCategoria);
         EsFavorito(db, this.idFinder);
@@ -100,7 +100,7 @@ public class DetailsFragment extends Fragment {
     }
 
     public void OnCheckedStar() {
-        MyOpenHelper dbHelper = new MyOpenHelper(getContext(),1);
+        MyOpenHelper dbHelper = new MyOpenHelper(getContext(), 1);
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         int id = MainActivity.getIdUser();
         if (checkBox.isChecked()) {
@@ -140,7 +140,6 @@ public class DetailsFragment extends Fragment {
                     "WHERE l._id = " + id + " and l._id = c._id;", null);
             if (c != null) {
                 c.moveToFirst();
-                System.out.println("Toooooooooooooooooo >-=======================================================================================   " + Arrays.toString(c.getColumnNames()));
                 int libro_id = c.getInt(0);
                 int categoria_id = c.getInt(9);
                 String fecha_publi = c.getString(1);

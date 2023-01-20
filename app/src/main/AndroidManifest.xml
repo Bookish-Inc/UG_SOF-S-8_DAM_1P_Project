@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Carrito"
+            android:name=".Module_1.Control_SignUpActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

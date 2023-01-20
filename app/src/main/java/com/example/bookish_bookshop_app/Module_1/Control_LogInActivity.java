@@ -86,7 +86,7 @@ public class Control_LogInActivity extends AppCompatActivity {
 
     public void onLblSignUp(View view) {
         // Calls SignUpActivity
-        startActivity(new Intent(Control_LogInActivity.this, Control_SignUpActivity.class));
+        startActivity(new Intent(this, Control_SignUpActivity.class));
     }
 
     private void toastMessage(String message) {
