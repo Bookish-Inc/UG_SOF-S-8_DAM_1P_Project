@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Module_1.Control_UserEditActivity">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -160,6 +160,7 @@
                     android:id="@+id/UserEdit_rdb_Female"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="onRdgGenreUpdate"
                     android:text="Femenino"
                     android:textSize="12sp" />
 
@@ -167,6 +168,7 @@
                     android:id="@+id/UserEdit_rdb_Male"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="onRdgGenreUpdate"
                     android:text="Masculino"
                     android:textSize="12sp" />
             </RadioGroup>
@@ -264,7 +266,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
@@ -275,6 +277,7 @@
                 android:layout_marginRight="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/borde_redondof"
+                android:onClick="onBtnUpdate"
                 android:text="Actualizar"
                 app:backgroundTint="@color/colorPrimary" />
 
@@ -295,7 +298,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <Button

@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.itemmenusuggest: {
                     replaceFragment(new FragmentSugerencia());
                 }
+                case R.id.itemmenuuser:{
+                    replaceFragment(new FragmentUser());
+                }
 
             }
             return true;

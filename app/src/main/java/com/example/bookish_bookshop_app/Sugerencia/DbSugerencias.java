@@ -25,12 +25,12 @@ public class DbSugerencias {
 
 
     public long insertarSugerencia(String titulo, String edicion, String editorial, String cubierta,
-                                    String nombreAutor, String apellidoAutor, String comentarios) {
+                                   String nombreAutor, String apellidoAutor, String comentarios) {
 
         long id = 0;
         try {
             ContentValues values = new ContentValues();
-            values.put("titulo",titulo);
+            values.put("titulo", titulo);
             values.put("edicion", edicion);
             values.put("editorial", editorial);
             values.put("cubierta", cubierta);
@@ -48,14 +48,14 @@ public class DbSugerencias {
 
     public ArrayList<Sugerencia> mostrarSugerencia() {
 
-        dbHelper = new MyOpenHelper(context,1);
+        dbHelper = new MyOpenHelper(context, 1);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ArrayList<Sugerencia> listaSugerencias = new ArrayList<>();
         Sugerencia sugerencia = null;
         Cursor cursorSugerencias = null;
 
-        cursorSugerencias = db.rawQuery("SELECT * FROM " + Tablas.Sugerencia , null);
+        cursorSugerencias = db.rawQuery("SELECT * FROM " + Tablas.Sugerencia, null);
 
         if (cursorSugerencias.moveToFirst()) {
             do {

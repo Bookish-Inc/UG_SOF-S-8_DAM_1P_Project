@@ -26,6 +26,7 @@ public class Control_LogInActivity extends AppCompatActivity {
     // Database Variables
     public Data_Module_1 data;
     public MyOpenHelper db;
+    public int iduser=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class Control_LogInActivity extends AppCompatActivity {
 
         // Verifies: if SharedPreferences exist then autologin
         if (loadPreferences()) {
-            callMainActivity(1);
+            callMainActivity(iduser);
             // TODO: send credential to UserActivity
         }
     }
@@ -71,7 +72,7 @@ public class Control_LogInActivity extends AppCompatActivity {
             if (activeSession) {
                 // if checkbox = true, then saves SharedPreferences
                 id_user = data.readUser_IdByUsername(username);
-                savePreferences(username, password, id_user + "");
+                savePreferences(username, password, id_user);
                 toastMessage("Pereferncias guardadas");
             } else {
                 toastMessage("Preferencias NO guardadas");
@@ -102,13 +103,13 @@ public class Control_LogInActivity extends AppCompatActivity {
     }
 
     // region Methods: SharedPreferences
-    private void savePreferences(String username_pref, String password_pref, String id_user_pref) {
+    private void savePreferences(String username_pref, String password_pref, int id_user_pref) {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("username", username_pref);
         editor.putString("password", password_pref);
-        editor.putString("id_user", id_user_pref);
+        editor.putInt("id_user", id_user_pref);
 
         editor.commit();
     }
@@ -123,6 +124,7 @@ public class Control_LogInActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("credentials", Context.MODE_PRIVATE);
         String username_temp = preferences.getString("username", "");
         String password_temp = preferences.getString("password", "");
+        this.iduser = preferences.getInt("id_user",0);
 
         if (username_temp != "" && password_temp != "") {
             flag = true;
