@@ -114,7 +114,7 @@ public class Control_SignUpActivity extends AppCompatActivity {
             if (saveUser) {
                 // Save SharedPreferences
                 id_user = data.readUser_IdByUsername(username);
-                savePreferences(username, password, id_user + "");
+                savePreferences(username, password, id_user);
                 callMainActivity();
                 toastMessage("Cuenta creada");
             } else {
@@ -143,13 +143,13 @@ public class Control_SignUpActivity extends AppCompatActivity {
         finish();
     }
 
-    private void savePreferences(String username_pref, String password_pref, String id_user_pref) {
+    private void savePreferences(String username_pref, String password_pref, int id_user_pref) {
         SharedPreferences preferences = getSharedPreferences("credentials", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("username", username_pref);
         editor.putString("password", password_pref);
-        editor.putString("id_user", id_user_pref);
+        editor.putInt("id_user", id_user_pref);
 
         editor.commit();
     }
