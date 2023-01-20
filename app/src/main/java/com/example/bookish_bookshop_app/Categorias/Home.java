@@ -53,12 +53,20 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-      /* MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
-       final SQLiteDatabase db = dbHelper.getReadableDatabase();
+        MyOpenHelperCatalog dbHelper = new MyOpenHelperCatalog(getContext());
+        final SQLiteDatabase db = dbHelper.getReadableDatabase();
         final SQLiteDatabase dbw = dbHelper.getWritableDatabase();
-        InsertCategories(db);
-        InsertBooks(db);
-        insertCategoriasxLibro(dbw);*/
+        if (db != null) {
+            Cursor c = db.rawQuery("SELECT COUNT(*) AS CONTAR FROM libro", null);
+            if (c != null && c.moveToNext()) {
+                @SuppressLint("Range") int contador = c.getInt(0);
+                if(contador == 0){
+                    InsertCategories(db);
+                    InsertBooks(db);
+                    insertCategoriasxLibro(dbw);
+                }
+            }
+        }
         loadCategoria();
         loadLibros();
     }
